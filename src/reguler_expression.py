@@ -6,15 +6,21 @@ Reguler expression merupakan salah satu fondasi dalam teori automata dan computa
 
 # urutan prioritas operator
 presendace = {
-    "'" : 1,
+    "|" : 1,
     "*" : 2,
     "-" : 2,
     "^" : 2,
+    "?" : 2,
     "[" : 2,
     "]" : 2,
     "(" : 2,
     ")" : 2,
+
 }
+
+# numerik dan angka
+numerik = "1234567890"
+alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 # class untuk mengolah regular expression
 class reguler_expression :
@@ -65,7 +71,7 @@ class reguler_expression :
         return res
 
     # mencetak hasil dari alternation
-    def alternation(self, string_a: int, string_b: int):
+    def alternation(self, string_a: str, string_b: int):
 
         # return none jika salah satu string adalah none
         if string_a is None or string_b is None:
@@ -77,6 +83,34 @@ class reguler_expression :
         print(f"hasil dari alternation adalah{res}")
 
         # mengembalikan nilai dari harsil alternation
+        return res
+    
+    # mengambil nilai dari alphabet
+    def range_character(self, string_a: str, string_b: str):
+        
+        # return none jika salah satu string adalah none
+        if string_a is None or string_b is None:
+            print("range character not valid")
+            return None
+        
+        # penampung hasil dari range character
+        res: list = []
+        les: bool = False
+        
+        # looping untuk memperoleh string awal dan akhir 
+        for i in alphabet:
+            # mencari string awal
+            if i == string_a:
+                les = True
+
+            # mencari string akhir
+            if i == string_b:
+                break
+            
+            # menambahkan alphabet ketika les = true
+            if les :
+                res.append(i)
+                
         return res
 
 # testing untuk class reguler expression
