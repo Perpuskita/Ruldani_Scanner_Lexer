@@ -18,9 +18,8 @@ presendace = {
 
 }
 
-# numerik dan angka
-numerik = "1234567890"
-alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# mendefinisikan epsilon
+epsilon = "ε"
 
 # class untuk mengolah regular expression
 class reguler_expression :
@@ -79,7 +78,7 @@ class reguler_expression :
             return None
 
         # menampung hasil dari alternation
-        res = [string_a, string_b, ""]
+        res = [string_a, string_b, epsilon]
         print(f"hasil dari alternation adalah{res}")
 
         # mengembalikan nilai dari harsil alternation
@@ -112,6 +111,47 @@ class reguler_expression :
                 res.append(i)
                 
         return res
+
+    def optional_expression(self, string_a: str):
+        # return none jika string a adalah None
+        if string_a is None:
+            print("ekspressi tidak valid")
+            return None
+
+        # menampung hasil dari optional ekspression
+        res = [string_a, epsilon]
+
+        return res
+
+    def repeated_expression(self, string_a: str, jumlah: int = 2):
+        # return none jika string a adalah None
+        if string_a is None:
+            print("ekspressi tidak valid")
+            return None
+
+        # return none jika jumlah repeated kurang dari 1
+        if jumlah < 2 :
+            print("ekpressi tidak valid jumlah kurang dari 2")
+            return None
+
+        # menampung hasil dari optional ekspression
+        res = [string_a]
+
+        for _ in range(jumlah):
+            res.append(string_a)
+
+        # menggembalikan nilai dari repeated ekspression
+        return res
+
+    def range_expression(self, string_a: str,  string_b: str):
+        return None
+
+    # def excepting_expression(self, )
+
+    def checker(self, string_a: str)-> bool:
+        
+        return False
+
 
 # testing untuk class reguler expression
 if __name__ == "__main__":
