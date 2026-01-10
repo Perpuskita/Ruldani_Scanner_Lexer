@@ -18,6 +18,10 @@ presendace = {
 
 }
 
+# numerik dan angka
+numerik = "1234567890"
+alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 # mendefinisikan epsilon
 epsilon = "ε"
 
