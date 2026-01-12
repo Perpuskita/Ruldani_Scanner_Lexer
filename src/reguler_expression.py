@@ -37,6 +37,8 @@ class reguler_expression :
     def leaguage_of_s(self):
         result = self.string
         
+        
+
         return result
 
     def klenee_closure(self, string_a: str, jumlah: int = 2):
@@ -150,11 +152,14 @@ class reguler_expression :
     def range_expression(self, string_a: str,  string_b: str):
         return None
 
-    # def excepting_expression(self, )
+    def excepting_expression(self, ):
+        return None
 
     def checker(self, string_a: str)-> bool:
-        
         return False
+    
+    def optional_expression():
+        return None
 
 
 # testing untuk class reguler expression
