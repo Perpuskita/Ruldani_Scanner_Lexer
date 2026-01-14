@@ -5,7 +5,14 @@ binding_power = {
     "/" : 2.0,
 }
 
-op = "operation"
+binding_power_regex = {
+    "|" : 1.0,
+    "c" : 2.0,
+    "*" : 3.0,
+    "(" : 2.0,
+}
+
+op = "operator"
 atom = "atom"
 eof = "eof"
 
@@ -14,10 +21,16 @@ class token:
     def __init__(self, char, type_token):
         self.char = char
         self.type_token = type_token
+        self.expression = None
 
-    def print_token(self):
-        print(f"token {self.char} ")
-
+    def get_token(self) -> str:
+        return self.char
+    
+    def get_type(self) -> str:
+        return self.type_token
+    
+    
+# class pratt parsing
 class lexer_pratt_parsing:
     def __init__(self, strings: str):
         self.strings = strings
@@ -59,61 +72,89 @@ class lexer_pratt_parsing:
             return token(eof, eof)
 
 # class operation
-class ast_pratt:
-    def __init__(self, operator: token, expression: list):
-        self.operator = operator
-        self.expression = expression
+class expression:
+    def __init__(self, operator_token = None, 
+                 lhs_expression = None,  
+                 rhs_expression = None ):
+        
+        self.operator: token = operator_token
+        self.lhs: token = lhs_expression
+        self.rhs: token = rhs_expression
+
+    def print_operator(self):
+        print(f"operator pada ast pratt ini adalah {self.operator.get_type()}")
+
+    def print_lhs(self):
+        print(f"lhs saat ini adalah {self.lhs}")
+
+    def print_rhs(self):
+        print(f"lhs saat ini adalah {self.rhs}")
+
 
 # class utama untuk melakukan parsing
 class pratt_parsing:
     def __init__(self, lexer: lexer_pratt_parsing):
         self.lexer = lexer
 
+    def binding_power(self, operator: str):
+        bp = binding_power.get(operator)
+        return bp
+
     def parse_expression(self, min_bp=0):
         
-        # menentukan lhs
         lhs = self.lexer.next_token()
+        if lhs.get_type() != atom :
+            raise ValueError ("lhs not valid")
 
-        if lhs.type_token == atom:
-            print(f"lhs saat ini = {lhs.char}")
-        else:
-            raise ValueError(f"bad token lhs = {lhs.char}, {lhs.type_token}")
-        
-        while True :
-
-            # menentukan operator
+        while True:
             operator = self.lexer.peek_token()
-            if operator.type_token == eof:
-                print(f"token eof break dari loop")
+            if operator.get_type() == eof:
                 break
-            elif operator.type_token == op:
-                print(f"token op saat ini adalah {operator.char}")
-            else :
-                raise ValueError(f"bad token {operator.char}")
-
-            # menentukan binding power
-            l_bp = binding_power.get(operator.char)
-            r_bp = l_bp + 0.1
-                        
-            if l_bp < min_bp:
-                break
+            elif operator.get_type() != op:
+                raise ValueError("tipe token tidak valid")
             
+            lbp = self.binding_power(operator.get_token())
+            rbp = lbp+0.1
+
+            if lbp < min_bp :
+                break
+
             self.lexer.next_token()
 
-            rhs = self.parse_expression(r_bp)
-            lhs = ast_pratt(operator, [lhs, rhs])
+            rhs = self.parse_expression(rbp)
+            lhs = expression(operator, lhs, rhs)
 
-        # menyimpan ekpressi kedalam ast
         return lhs
 
-    def print_ast (self, ast : ast_pratt):
-        return None
+    def print_token(self, ast: expression):
+
+        op = ast.operator.get_token()
+        lhs = ast.lhs
+
+        if type(lhs) == expression :
+            lhs = self.print_token(lhs)
+        else :
+            lhs = lhs.get_token()
+
+        rhs = ast.rhs
+        if type(rhs) == expression :
+            rhs = self.print_token(rhs)
+        else :
+            rhs = rhs.get_token()
+        
+        res = f"({lhs + op + rhs})"
+        print(res)
+
+        return res
+
+
 
 
 if __name__ == "__main__":
-    test = "a+b*y+u/i"
+    test = "a+b-c*c/y"
     lexical = lexer_pratt_parsing(test)
-    lexical.print_tokens()
+    # lexical.print_tokens()
+
     pratt = pratt_parsing(lexical)
     ast = pratt.parse_expression()
-    pratt.print_ast(ast)
+    pratt.print_token(ast)
