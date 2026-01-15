@@ -103,13 +103,21 @@ class pratt_parsing:
     def parse_expression(self, min_bp=0):
         
         lhs = self.lexer.next_token()
-        if lhs.get_type() != atom :
+        if lhs.get_token() == "(":
+            lhs = self.parse_expression()
+            if self.lexer.next_token().get_token() != ")":
+                raise ValueError ("close bracket not found")
+
+        elif lhs.get_type() != atom :
             raise ValueError ("lhs not valid")
 
         while True:
             operator = self.lexer.peek_token()
             if operator.get_type() == eof:
                 break
+            elif operator.get_token() == ")":
+                break
+                
             elif operator.get_type() != op:
                 raise ValueError("tipe token tidak valid")
             
@@ -151,7 +159,7 @@ class pratt_parsing:
 
 
 if __name__ == "__main__":
-    test = "a+b-c*c/y"
+    test = "(a+b)-c*c/y"
     lexical = lexer_pratt_parsing(test)
     # lexical.print_tokens()
 
