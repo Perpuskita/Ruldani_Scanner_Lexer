@@ -1,8 +1,10 @@
 """
 Reguler expression adalah cara untuk meciptakan pola ekpressi dengan notasi yang diberikan.
 Reguler expression pertama kali dikemukakan pada tahun 1950 oleh Stephen Klenee.
-Reguler expression merupakan salah satu fondasi dalam teori automata dan computasi.
+Reguler expression merupakan salah satu fondasi dalam teori automata dan komputasi.
 """
+
+import parser_reguler_expression as pratt
 
 # urutan prioritas operator
 presendace = {
@@ -34,12 +36,99 @@ class reguler_expression :
         self.string = string_regex
     
     # mencetak dari semua hasil dari regex
-    def leaguage_of_s(self):
-        result = self.string
-        
-        
+    def leaguage_of_s(self, jumlah: int = 1):
 
-        return result
+        # mengambil lexical dan parser pratt parsing
+        lexical = pratt.lexer_pratt_parsing(self.string)
+        parser  = pratt.pratt_parsing(lexical)
+        ast     = parser.parse_expression()
+
+        render  = self.render(ast, jumlah=jumlah, root=True)
+
+        for strings in render :
+            print(f" hasil regex : {strings}")
+
+        # cetak hasil
+        return None
+
+    # fungsi yang digunakan untuk melakukan rendering
+    def render(self, ast: pratt.expression, jumlah: int = 1, root: bool = False) -> list:
+        # error jika parameter jumlah di assign kurang dari 2
+        if jumlah < 1:
+            raise ValueError ("jumlah harus diatas 1 ")
+
+        # mendapatkan operator dari expressi
+        op = ast.operator.get_token()
+        
+        # mendapatkan lhs dari ekspressi
+        lhs: list = []
+
+        if type(ast.lhs) == pratt.expression :
+            lhs = self.render(ast.lhs, jumlah=jumlah)
+        else :
+            lhs = [ast.lhs.get_token()]
+
+        rhs: list = []
+        if type(ast.rhs) == pratt.expression :
+            rhs = self.render(ast.rhs, jumlah=jumlah)
+        else :
+            rhs = [ast.rhs.get_token()]
+
+        # menentukan jumlah maximum dari hasil reguler expression yang bisa dirender
+        # apabila jumlah melebihi maximum hasil reguler expression maka error
+        # print(len(rhs))
+        
+        maximum_render:int = 0
+
+        if op == "|" :
+            maximum_render = len(lhs) + len(rhs) + 1
+        
+        elif op == "*" :
+            maximum_render = 999
+
+        else:
+            maximum_render = len(lhs) + len(rhs) - 1
+
+        res: list = [] # hasil berupa list string
+
+        if jumlah > maximum_render and root:
+            raise ValueError("expression tidak dapat dirender sebanyak itu")
+
+        # render satu persatu hasil dari operasi
+        # algoritma : 
+        # ambil lhs char dari lhs[i%lhs.count]  
+        # ambil rhs char dari rhs[i%rhs.count]
+        # tentukan operasi yang akan dilakukan berikutnya
+        # operasi ditentukan dari jenis OP
+        # eksekusi dengan operasi yang ditentukan
+
+        jumlah_loop: int = jumlah
+
+        for i in range(jumlah):
+            # mendapatkan hasil dari lhs dan rhs ke - i selama loop
+            lhs_char = lhs[i % len(lhs)]
+            rhs_char = rhs[i % len(rhs)]
+
+            temp: list = []
+
+            # memperoleh hasil operasi
+            if op == "+" :
+                temp = self.concatination(lhs_char, rhs_char)
+            elif op == "|" :
+                temp = self.alternation(lhs_char, rhs_char)
+            elif op == "*" :
+                temp = self.klenee_closure(lhs_char, jumlah=jumlah)
+
+            # kondisional untuk melakukan looping terhadap temp yang sudah dilakukan
+            for chars in temp:
+                res.append(chars)
+
+                # kondisional yang diperlukan untuk keluar dari loop
+                jumlah_loop = jumlah_loop - 1
+                if jumlah_loop < 1:
+                    return res
+            
+        return res
 
     def klenee_closure(self, string_a: str, jumlah: int = 2):
         
@@ -48,7 +137,7 @@ class reguler_expression :
             print("klenee closure not valid")
         
         if jumlah < 2 :
-            print("klenee closure kuranf dari 2 sehingga tidak valid ")
+            print(f"klenee closure kurang dari 2 sehingga tidak valid {jumlah}")
 
         # menampung result dari klenee closure
         res = []
@@ -56,7 +145,7 @@ class reguler_expression :
         for i in range(jumlah):
             res.append(string_a)
 
-        print(f"hasil dari klenee closure adalah {res}")
+        # print(f"hasil dari klenee closure adalah {res}")
         # mengembalikan nilai hasil klenee closure
         return res
 
@@ -69,8 +158,8 @@ class reguler_expression :
             return None
         
         # return gabungan dari string a dan string b
-        res = string_a + string_b
-        print(f"hasil dari concatination adalah : {res}")
+        res = [string_a + string_b]
+        # print(f"hasil dari concatination adalah : {res}")
         
         # mengembalikan nilai dari hasil concatination
         return res
@@ -85,102 +174,31 @@ class reguler_expression :
 
         # menampung hasil dari alternation
         res = [string_a, string_b, epsilon]
-        print(f"hasil dari alternation adalah{res}")
+        # print(f"hasil dari alternation adalah{res}")
 
         # mengembalikan nilai dari harsil alternation
         return res
-    
-    # mengambil nilai dari alphabet
-    def range_character(self, string_a: str, string_b: str):
-        
-        # return none jika salah satu string adalah none
-        if string_a is None or string_b is None:
-            print("range character not valid")
-            return None
-        
-        # penampung hasil dari range character
-        res: list = []
-        les: bool = False
-        
-        # looping untuk memperoleh string awal dan akhir 
-        for i in alphabet:
-            # mencari string awal
-            if i == string_a:
-                les = True
-
-            # mencari string akhir
-            if i == string_b:
-                break
-            
-            # menambahkan alphabet ketika les = true
-            if les :
-                res.append(i)
-                
-        return res
-
-    def optional_expression(self, string_a: str):
-        # return none jika string a adalah None
-        if string_a is None:
-            print("ekspressi tidak valid")
-            return None
-
-        # menampung hasil dari optional ekspression
-        res = [string_a, epsilon]
-
-        return res
-
-    def repeated_expression(self, string_a: str, jumlah: int = 2):
-        # return none jika string a adalah None
-        if string_a is None:
-            print("ekspressi tidak valid")
-            return None
-
-        # return none jika jumlah repeated kurang dari 1
-        if jumlah < 2 :
-            print("ekpressi tidak valid jumlah kurang dari 2")
-            return None
-
-        # menampung hasil dari optional ekspression
-        res = [string_a]
-
-        for _ in range(jumlah):
-            res.append(string_a)
-
-        # menggembalikan nilai dari repeated ekspression
-        return res
-
-    def range_expression(self, string_a: str,  string_b: str):
-        return None
-
-    def excepting_expression(self, ):
-        return None
-
-    def checker(self, string_a: str)-> bool:
-        return False
-    
-    def optional_expression():
-        return None
 
 
 # testing untuk class reguler expression
 if __name__ == "__main__":
     
     # testing regex
-    re = reguler_expression("a|b")
-    re.leaguage_of_s()
+    re = reguler_expression("ab|bc(d*)")
+    re.leaguage_of_s(4)
 
-    # testing concatination
-    re.concatination("n","s")
-    re.concatination(None, "t")
-    re.concatination("t", None )
+    # # testing concatination (ab)
+    # re.concatination("n","s")
+    # re.concatination(None, "t")
+    # re.concatination("t", None )
     
-    # testing klenee_closure
-    re.klenee_closure("r")
-    re.klenee_closure("r", 5)
-    re.klenee_closure(None)
+    # # testing klenee_closure (a*)
+    # re.klenee_closure("r")
+    # re.klenee_closure("r", 5)
+    # re.klenee_closure(None)
 
-    # testinf alternation
-    re.alternation("n", "s")
-    re.alternation(None, "s")
-    re.alternation("n", None)
+    # # testing alternation (a|b)
+    # re.alternation("n", "s")
+    # re.alternation(None, "s")
+    # re.alternation("n", None)
 
