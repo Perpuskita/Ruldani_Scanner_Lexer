@@ -8,5 +8,5 @@ Tujuan dari project ini adalah mempelajari teori automata, mengenal teori compil
 
 | Fitur | Deskripsi | Status |
 |----------|----------|----------|
-| RE Printing   | Melakukan printing posibility terhadap reguler expression   | - [x] complete   |
-| RE Validate   | Melakukan validasi token menggunakan reguler expression | - [x] development   |
+| RE Printing   | Melakukan printing posibility terhadap reguler expression   | ✅ complete   |
+| RE Validate   | Melakukan validasi token menggunakan reguler expression | ✍🏽 development   |
