@@ -121,14 +121,26 @@ class reguler_expression :
 
             # kondisional untuk melakukan looping terhadap temp yang sudah dilakukan
             for chars in temp:
-                res.append(chars)
+                alte_des: bool = False
+                for res_c in res:
+                    if chars == res_c:
+                        alte_des = True
+                        continue
+                
+                if alte_des:
+                    continue
 
+                res.append(chars)
                 # kondisional yang diperlukan untuk keluar dari loop
                 jumlah_loop = jumlah_loop - 1
                 if jumlah_loop < 1:
+                    print(res)
                     return res
             
         return res
+
+    def eval (self, string_a: str):
+        return None
 
     def klenee_closure(self, string_a: str, jumlah: int = 2):
         
@@ -141,9 +153,11 @@ class reguler_expression :
 
         # menampung result dari klenee closure
         res = []
-        
+        reps:str = ""
+
         for i in range(jumlah):
-            res.append(string_a)
+            res.append(reps + string_a)
+            reps = res[-1]
 
         # print(f"hasil dari klenee closure adalah {res}")
         # mengembalikan nilai hasil klenee closure
@@ -157,6 +171,13 @@ class reguler_expression :
             print("concatination not valid")
             return None
         
+        # return string b jika di concate dengan epsilon
+        if string_a == epsilon:
+            return string_b
+        
+        if string_b == epsilon:
+            return string_a
+
         # return gabungan dari string a dan string b
         res = [string_a + string_b]
         # print(f"hasil dari concatination adalah : {res}")
@@ -171,9 +192,15 @@ class reguler_expression :
         if string_a is None or string_b is None:
             print("alternation not valid")
             return None
-
+        
         # menampung hasil dari alternation
-        res = [string_a, string_b, epsilon]
+        res = []
+     
+        res.append(string_a)
+        res.append(string_b)
+
+        # menambahkan epsilon pada hasil alternation
+        res.append(epsilon)
         # print(f"hasil dari alternation adalah{res}")
 
         # mengembalikan nilai dari harsil alternation
@@ -184,8 +211,8 @@ class reguler_expression :
 if __name__ == "__main__":
     
     # testing regex
-    re = reguler_expression("ab|bc(d*)")
-    re.leaguage_of_s(4)
+    re = reguler_expression("(ab)*|(dc)*")
+    re.leaguage_of_s(7)
 
     # # testing concatination (ab)
     # re.concatination("n","s")
