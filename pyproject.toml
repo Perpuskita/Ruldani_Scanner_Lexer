@@ -4,14 +4,11 @@ name = "ruldani_scanner_lexer"
 version = "0.1.0"
 
 [project.optional-dependencies]
-examples = [
-    "matplotlib",
-    "pandas",
-]
+examples = []
 
-[tool.taskipy.tasks]
-run-example = "python -m examples.{example}"
-test-example = "pytest examples/"
+[tool.pytest.ini_options]
+testpaths = ["src/test"]
+pythonpath = ["src"]
 
 # Setup development environment
 dev = "pip install -e .[dev,examples]"
