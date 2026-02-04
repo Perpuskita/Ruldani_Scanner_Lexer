@@ -2,7 +2,7 @@ class finite_automata_node:
     def __init__(self, string_a):
         print("inisialisasi finite automata node berhasil")
         self.expression = None
-        self.next = []
+        self.next = None
     
     def print_node(self):
         return None

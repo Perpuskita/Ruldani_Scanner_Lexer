@@ -4,7 +4,7 @@ Reguler expression pertama kali dikemukakan pada tahun 1950 oleh Stephen Klenee.
 Reguler expression merupakan salah satu fondasi dalam teori automata dan komputasi.
 """
 
-import parser_reguler_expression as pratt
+from .parser_reguler_expression import *
 
 # urutan prioritas operator
 presendace = {
@@ -39,8 +39,8 @@ class reguler_expression :
     def leaguage_of_s(self, jumlah: int = 1):
 
         # mengambil lexical dan parser pratt parsing
-        lexical = pratt.lexer_pratt_parsing(self.string)
-        parser  = pratt.pratt_parsing(lexical)
+        lexical = lexer_pratt_parsing(self.string)
+        parser  = pratt_parsing(lexical)
         ast     = parser.parse_expression()
 
         render  = self.render(ast, jumlah=jumlah, root=True)
@@ -52,7 +52,7 @@ class reguler_expression :
         return None
 
     # fungsi yang digunakan untuk melakukan rendering
-    def render(self, ast: pratt.expression, jumlah: int = 1, root: bool = False) -> list:
+    def render(self, ast: expression, jumlah: int = 1, root: bool = False) -> list:
         # error jika parameter jumlah di assign kurang dari 2
         if jumlah < 1:
             raise ValueError ("jumlah harus diatas 1 ")
@@ -63,13 +63,13 @@ class reguler_expression :
         # mendapatkan lhs dari ekspressi
         lhs: list = []
 
-        if type(ast.lhs) == pratt.expression :
+        if type(ast.lhs) == expression :
             lhs = self.render(ast.lhs, jumlah=jumlah)
         else :
             lhs = [ast.lhs.get_token()]
 
         rhs: list = []
-        if type(ast.rhs) == pratt.expression :
+        if type(ast.rhs) == expression :
             rhs = self.render(ast.rhs, jumlah=jumlah)
         else :
             rhs = [ast.rhs.get_token()]
@@ -205,27 +205,3 @@ class reguler_expression :
 
         # mengembalikan nilai dari harsil alternation
         return res
-
-
-# testing untuk class reguler expression
-if __name__ == "__main__":
-    
-    # testing regex
-    re = reguler_expression("(ab)*|(dc)*")
-    re.leaguage_of_s(7)
-
-    # # testing concatination (ab)
-    # re.concatination("n","s")
-    # re.concatination(None, "t")
-    # re.concatination("t", None )
-    
-    # # testing klenee_closure (a*)
-    # re.klenee_closure("r")
-    # re.klenee_closure("r", 5)
-    # re.klenee_closure(None)
-
-    # # testing alternation (a|b)
-    # re.alternation("n", "s")
-    # re.alternation(None, "s")
-    # re.alternation("n", None)
-
