@@ -4,7 +4,7 @@ Reguler expression pertama kali dikemukakan pada tahun 1950 oleh Stephen Klenee.
 Reguler expression merupakan salah satu fondasi dalam teori automata dan komputasi.
 """
 
-from .parser_reguler_expression import *
+from .utils.parser_reguler_expression import *
 
 # urutan prioritas operator
 presendace = {
@@ -36,7 +36,7 @@ class reguler_expression :
         self.string = string_regex
     
     # mencetak dari semua hasil dari regex
-    def leaguage_of_s(self, jumlah: int = 1):
+    def compile(self, jumlah: int = 1):
 
         # mengambil lexical dan parser pratt parsing
         lexical = lexer_pratt_parsing(self.string)

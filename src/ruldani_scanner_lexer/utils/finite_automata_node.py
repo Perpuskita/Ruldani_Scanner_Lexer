@@ -1,3 +1,7 @@
+"""
+berisi node 
+"""
+
 class finite_automata_node:
     def __init__(self, string_a):
         print("inisialisasi finite automata node berhasil")

@@ -166,15 +166,3 @@ class pratt_parsing:
 
     def get_ast(self):
         return self.ast
-
-
-
-if __name__ == "__main__":
-    test = "a|bcd*d"
-    lexical = lexer_pratt_parsing(test)
-    # lexical.print_tokens()
-
-    pratt = pratt_parsing(lexical)
-    ast = pratt.parse_expression()
-    result = pratt.print_token(ast)
-    print(result)
