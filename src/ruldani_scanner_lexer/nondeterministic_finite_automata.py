@@ -17,7 +17,3 @@ class nondeterministic_finite_automata:
         for nama_node in self.node:
             print(nama_node)
 
-if __name__ == "__main__" :
-    
-    nfa = nondeterministic_finite_automata()
-    nfa.add_node()
