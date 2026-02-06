@@ -21,3 +21,8 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 # Teknik konversi
 graph LR
     A[Reguler Expression] -->|Thompson Constructions| B[Non-Deterministic Finite Automata] -->|Subset Constructions| C[Deterministic Finite Automata]
+
+graph TD
+    A[Atas] --> B[Bawah]
+    style A fill:#f9f
+    style B fill:#bbf
