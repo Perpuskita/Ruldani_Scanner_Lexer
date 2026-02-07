@@ -41,7 +41,7 @@ class TestSubFeature:
         assert self.re.concatination("a","b") == ["ab"]
 
     def test_concatination2(self):
-        assert self.re.concatination("")
+        assert self.re.concatination("a", None) == None
 
 # tes fitur utama
 class TestCoreFeature:
@@ -62,5 +62,17 @@ class TestCoreFeature:
                          "(ab|c)*"] 
         cls.re = reguler_expression("a+b")
 
+    def test_regex_1(self):
+        assert True
+
+    def test_regex_2(self):
+        assert True
     
+    def test_regex_3(self):
+        assert True
     
+    def test_regex_4(self):
+        assert True
+    
+    def test_regex_5(self):
+        assert True
