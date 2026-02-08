@@ -11,7 +11,7 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | Fitur | Deskripsi | Status |
 |-------|-------------|----------|
 | RE Printing   | Melakukan printing posibility terhadap reguler expression   | ✅ complete   |
-| RE Validate   | Melakukan validasi token menggunakan reguler expression | ✍🏽 development   |
+| RE Eval   | Melakukan validasi token menggunakan reguler expression | ✍🏽 development   |
 | NFA Visualized   | Memvisualisasikan NFA | ✍🏽 development   |
 | DFA Visualized   | Memvisualisasikan DFA | ✍🏽 development   |
 | RE to NFA   | Mengkonversi RE kedalam bentuk NFA | ✍🏽 development   |
