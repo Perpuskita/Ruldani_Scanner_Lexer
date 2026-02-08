@@ -2,4 +2,4 @@
 from ruldani_scanner_lexer import reguler_expression
 
 regex = reguler_expression("(ab)*|(dc)*")
-regex.leaguage_of_s(7)
+regex.compile(7)

@@ -2,11 +2,17 @@
 
 Ruldani scanner lexer adalah project chain dari [ruldani visual programming](https://github.com/Perpuskita/Ruldani_VisualProgramming). Ruldani scanner lexer adalah tools untuk melakukan lexical analysis dengan pendekatan finite automata. 
 
-# Tujuan
+## Table of content
+- [Tujuan](#tujuan)
+- [Roadmap](#roadmap)
+- [Teknik Konversi](#teknik-konversi)
+- [Flowchart](#flowchart-program)
+
+
+## Tujuan
 Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori compiler, mempelajari tahapan lexical analysis serta sebagai tools pengembangan untuk ruldani visual programming.
 
-
-# Roadmap
+## Roadmap
 
 | Fitur | Deskripsi | Status |
 |-------|-------------|----------|
@@ -18,7 +24,10 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | NFA to DFA   | Mengkonversi NFA kedalam bentuk DFA | ✍🏽 development   |
 | RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
 
-# Teknik konversi
+## Teknik konversi
 Teknik konversi yang digunakan adalah thompson construction, subset construction, dan hopcroft algorithm.
 
 <img src="./docs/img/conversion_method.png" width="800" alt="conversion_method">
+
+
+## Flowchart program
