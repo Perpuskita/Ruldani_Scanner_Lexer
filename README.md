@@ -21,4 +21,4 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 # Teknik konversi
 Teknik konversi yang digunakan adalah thompson construction, subset construction, dan hopcroft algorithm.
 
-<img src="./docs/img/conversion_method.png" width="200" alt="conversion_method">
+<img src="./docs/img/conversion_method.png" width="800" alt="conversion_method">
