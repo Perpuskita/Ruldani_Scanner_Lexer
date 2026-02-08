@@ -4,7 +4,8 @@ Reguler expression pertama kali dikemukakan pada tahun 1950 oleh Stephen Klenee.
 Reguler expression merupakan salah satu fondasi dalam teori automata dan komputasi.
 """
 
-from .utils.parser_reguler_expression import *
+from .utils.parser_reguler_expression import lexer_pratt_parsing, pratt_parsing, expression
+from .exceptions.error import lexical_error
 
 # urutan prioritas operator
 presendace = {
@@ -33,6 +34,7 @@ class reguler_expression :
     # inisialisai class
     def __init__(self, string_regex: str):
         # print(string_regex)
+        self.error = lexical_error()
         self.string = string_regex
     
     # mencetak dari semua hasil dari regex
@@ -92,7 +94,7 @@ class reguler_expression :
         res: list = [] # hasil berupa list string
 
         if jumlah > maximum_render and root:
-            raise ValueError("expression tidak dapat dirender sebanyak itu")
+            raise ValueError(self.error.maximum_render_exception())
 
         # render satu persatu hasil dari operasi
         # algoritma : 
@@ -146,10 +148,10 @@ class reguler_expression :
         
         # return None jika string_a adalah None
         if string_a is None :
-            print("klenee closure not valid")
+            print(self.error.none_variable_klenee_closure_exception())
         
         if jumlah < 2 :
-            print(f"klenee closure kurang dari 2 sehingga tidak valid {jumlah}")
+            print(self.error.minimum_klenee_closure_exception())
 
         # menampung result dari klenee closure
         res = []

@@ -17,3 +17,4 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | RE to NFA   | Mengkonversi RE kedalam bentuk NFA | ✍🏽 development   |
 | NFA to DFA   | Mengkonversi NFA kedalam bentuk DFA | ✍🏽 development   |
 | RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
+| Transition Table | Membuat fungsi transisi untuk NFA dan DFA| ✍🏽 development   |
