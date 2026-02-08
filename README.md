@@ -19,4 +19,6 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
 
 # Teknik konversi
-Under Construction
+Teknik konversi yang digunakan adalah thompson construction, subset construction, dan hopcroft algorithm.
+
+<img src="./docs/img/conversion_method.png" width="200" alt="conversion_method">
