@@ -28,30 +28,31 @@ alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # mendefinisikan epsilon
 epsilon = "ε"
 
+# mendefinisikan class error
+EXCEPTION_LEXER = lexical_error()
+
+
 # class untuk mengolah regular expression
 class reguler_expression :
 
     # inisialisai class
     def __init__(self, string_regex: str):
         # print(string_regex)
-        self.error = lexical_error()
-        self.string = string_regex
+        self.string:str = string_regex
     
     # mencetak dari semua hasil dari regex
-    def compile(self, jumlah: int = 1):
+    def compile(self, jumlah: int = 1) -> list:
 
-        # mengambil lexical dan parser pratt parsing
+        # mengambil lexical dan ast hasil parser pratt parsing
         lexical = lexer_pratt_parsing(self.string)
         parser  = pratt_parsing(lexical)
         ast     = parser.parse_expression()
 
         render  = self.render(ast, jumlah=jumlah, root=True)
-
-        for strings in render :
-            print(f" hasil regex : {strings}")
+        print(f" hasil regex : {render}")
 
         # cetak hasil
-        return None
+        return render
 
     # fungsi yang digunakan untuk melakukan rendering
     def render(self, ast: expression, jumlah: int = 1, root: bool = False) -> list:
@@ -94,7 +95,7 @@ class reguler_expression :
         res: list = [] # hasil berupa list string
 
         if jumlah > maximum_render and root:
-            raise ValueError(self.error.maximum_render_exception())
+            raise ValueError(EXCEPTION_LEXER.maximum_render_exception())
 
         # render satu persatu hasil dari operasi
         # algoritma : 
@@ -141,21 +142,23 @@ class reguler_expression :
             
         return res
 
-    def eval (self, string_a: str):
+    def eval (self, string_a: str) -> bool:
         return None
 
-    def klenee_closure(self, string_a: str, jumlah: int = 2):
+    def klenee_closure(self, string_a: str, jumlah: int = 2)-> list:
         
         # return None jika string_a adalah None
         if string_a is None :
-            print(self.error.none_variable_klenee_closure_exception())
+            print(EXCEPTION_LEXER.none_variable_klenee_closure_exception())
+            return None
         
         if jumlah < 2 :
-            print(self.error.minimum_klenee_closure_exception())
+            print(EXCEPTION_LEXER.minimum_klenee_closure_exception())
+            return None
 
         # menampung result dari klenee closure
-        res = []
-        reps:str = ""
+        res: list = []
+        reps: str = ""
 
         for i in range(jumlah):
             res.append(reps + string_a)
@@ -166,11 +169,11 @@ class reguler_expression :
         return res
 
     # mencetak hasil dari concatination
-    def concatination(self, string_a: str, string_b: str)-> str:
+    def concatination(self, string_a: str, string_b: str)-> list:
         
         # return None jika kedua string adalah None
         if string_a is None or string_b is None:
-            print("concatination not valid")
+            print(EXCEPTION_LEXER.none_variabel_concatination_exception())
             return None
         
         # return string b jika di concate dengan epsilon
@@ -188,11 +191,11 @@ class reguler_expression :
         return res
 
     # mencetak hasil dari alternation
-    def alternation(self, string_a: str, string_b: int):
+    def alternation(self, string_a: str, string_b: int)-> list:
 
         # return none jika salah satu string adalah none
         if string_a is None or string_b is None:
-            print("alternation not valid")
+            print(EXCEPTION_LEXER.none_variabel_alternation_exception())
             return None
         
         # menampung hasil dari alternation
@@ -207,3 +210,8 @@ class reguler_expression :
 
         # mengembalikan nilai dari harsil alternation
         return res
+
+
+if __name__ == "__main__":
+    re = reguler_expression("ab")
+    print(re.compile() == ['ab']) 
