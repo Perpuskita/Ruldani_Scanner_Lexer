@@ -33,6 +33,9 @@ Teknik konversi atau algoritma yang digunakan adalah thompson construction, subs
 ## Flowchart program
 under - construction T^T
 
+## Instalation
+under - construction T^T
+
 ## How to run
 under - construction T^T
 
