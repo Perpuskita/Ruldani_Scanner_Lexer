@@ -51,19 +51,12 @@ class TestCoreFeature:
     compile menghasilkan kemungkinan hasil dari reguler expression yang dihasilkan
     eval mengevaluasi input string terhadap reguler expression yang telah dicompile
     """
-    # setup new class 
     def setup_class(cls):
-        cls.list_test = ["ab", "a|b", 
-                         "a*"
-                         "ab|c", 
-                         "(ab)|c",
-                         "ab|c*", 
-                         "a(b|c)*"
-                         "(ab|c)*"] 
-        cls.re = reguler_expression("a+b")
+        cls.re = reguler_expression("ab")
 
+    # setup new class 
     def test_regex_1(self):
-        assert True
+        assert self.re.compile() == ['ab']
 
     def test_regex_2(self):
         assert True
