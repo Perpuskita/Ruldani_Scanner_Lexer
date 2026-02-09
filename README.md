@@ -25,9 +25,16 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
 
 ## Teknik konversi
-Teknik konversi yang digunakan adalah thompson construction, subset construction, dan hopcroft algorithm.
+Teknik konversi atau algoritma yang digunakan adalah thompson construction, subset construction, dan hopcroft algorithm. thompson's construction digunakan untuk mengkonversi reguler expression kedalam non-deterministic finite automata. subset construction digunakan untuk mengkonversi non-deterministic finite automata kedalam deterministic automata. Hopcroft algorithm digunakan untuk membuat deterministic finite automata agar memiliki proses yang lebih kecil namun tetap mendeskripsikan deterministic finite automata yang sebenarnya.
 
 <img src="./docs/img/conversion_method.png" width="800" alt="conversion_method">
 
 
 ## Flowchart program
+under - construction T^T
+
+## Example
+under - construction T^T
+
+## Contibute
+under - construction T^T
