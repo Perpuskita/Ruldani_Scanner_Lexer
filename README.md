@@ -34,9 +34,16 @@ Teknik konversi atau algoritma yang digunakan adalah thompson construction, subs
 under - construction T^T
 
 ## Instalation
+### install requirement
+```bash
+pip install -r requirements.txt
+```
+
+# install melalui pip install
 ```bash
 pip install .
 ```
+
 
 ## How to run
 
