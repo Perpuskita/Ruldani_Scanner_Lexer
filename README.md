@@ -34,7 +34,9 @@ Teknik konversi atau algoritma yang digunakan adalah thompson construction, subs
 under - construction T^T
 
 ## Instalation
-under - construction T^T
+```python
+pip install .
+```
 
 ## How to run
 
