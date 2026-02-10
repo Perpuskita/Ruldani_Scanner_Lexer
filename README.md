@@ -58,5 +58,15 @@ if __name__ == "__main__":
     print(alternation)
     print(concatination)
 ```
+### Reguler expression sampling
+```
+from ruldani_scanner_lexer import reguler_expression
+
+if __name__ == "__main__":
+    regex = reguler_expression("(dc)*")
+    hasil = regex.compile(3)
+    print(hasil)
+```
+
 ## Contibute
 under - construction T^T
