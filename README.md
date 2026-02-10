@@ -34,11 +34,39 @@ Teknik konversi atau algoritma yang digunakan adalah thompson construction, subs
 under - construction T^T
 
 ## Instalation
-under - construction T^T
+```bash
+pip install .
+```
 
 ## How to run
-under - construction T^T
-but you can run with example 
+
+### Reguler expression Operator
+
+```python
+from ruldani_scanner_lexer import reguler_expression
+
+
+if __name__ == "__main__":
+    re = reguler_expression("")
+
+    klenee_closure = re.klenee_closure("wello", 3)
+    alternation = re.alternation("scanner", "lexer")
+    concatination = re.concatination("lexer", "foo")
+
+    # print
+    print(klenee_closure)
+    print(alternation)
+    print(concatination)
+```
+### Reguler expression sampling
+```python
+from ruldani_scanner_lexer import reguler_expression
+
+if __name__ == "__main__":
+    regex = reguler_expression("(dc)*")
+    hasil = regex.compile(3)
+    print(hasil)
+```
 
 ## Contibute
 under - construction T^T
