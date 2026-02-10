@@ -49,7 +49,6 @@ class reguler_expression :
         ast     = parser.parse_expression()
 
         render  = self.render(ast, jumlah=jumlah, root=True)
-        print(f" hasil regex : {render}")
 
         # cetak hasil
         return render
@@ -137,7 +136,6 @@ class reguler_expression :
                 # kondisional yang diperlukan untuk keluar dari loop
                 jumlah_loop = jumlah_loop - 1
                 if jumlah_loop < 1:
-                    print(res)
                     return res
             
         return res
@@ -210,8 +208,3 @@ class reguler_expression :
 
         # mengembalikan nilai dari harsil alternation
         return res
-
-
-if __name__ == "__main__":
-    re = reguler_expression("ab")
-    print(re.compile() == ['ab']) 

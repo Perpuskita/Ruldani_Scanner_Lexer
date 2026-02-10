@@ -16,7 +16,7 @@ class finite_automata_node:
     def print_node(self):
         return None
 
-    def next_node(self, node_s: finite_automata_node):
+    def next_node(self, node_s):
         self.next.append(node_s)
         return None
 

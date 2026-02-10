@@ -4,5 +4,9 @@ name = "ruldani_scanner_lexer"
 version = "0.1.0"
 
 [tool.pytest.ini_options]
-testpaths = ["./src/tests"]
+testpaths = ["./tests"]
 pythonpath = ["./src"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"

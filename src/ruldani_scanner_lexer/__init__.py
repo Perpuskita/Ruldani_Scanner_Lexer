@@ -1,2 +1,3 @@
-if __name__ == "__main__":
-    print("hello")
+from .reguler_expression import reguler_expression
+from .nondeterministic_finite_automata import nondeterministic_finite_automata
+
