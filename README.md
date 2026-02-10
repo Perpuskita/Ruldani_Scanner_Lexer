@@ -39,7 +39,7 @@ under - construction T^T
 pip install -r requirements.txt
 ```
 
-# install melalui pip install
+### install melalui pip install
 ```bash
 pip install .
 ```
