@@ -40,7 +40,7 @@ pip install .
 
 ## How to run
 
-### Reguleer expression Operator
+### Reguler expression Operator
 
 ```python
 from ruldani_scanner_lexer import reguler_expression
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     print(concatination)
 ```
 ### Reguler expression sampling
-```
+```python
 from ruldani_scanner_lexer import reguler_expression
 
 if __name__ == "__main__":
