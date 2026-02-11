@@ -13,7 +13,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="yUL19bc03RgOELtqgpFn-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Reguler Expression" vertex="1">
-          <mxGeometry height="60" width="120" x="40" y="450" as="geometry" />
+          <mxGeometry height="60" width="120" y="450" as="geometry" />
         </mxCell>
         <mxCell id="yUL19bc03RgOELtqgpFn-7" edge="1" parent="1" source="yUL19bc03RgOELtqgpFn-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="yUL19bc03RgOELtqgpFn-6">
           <mxGeometry relative="1" as="geometry" />
@@ -35,10 +35,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="yUL19bc03RgOELtqgpFn-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Deterministic Finite Automata" vertex="1">
-          <mxGeometry height="60" width="120" x="440" y="450" as="geometry" />
+          <mxGeometry height="60" width="120" x="480" y="450" as="geometry" />
         </mxCell>
         <mxCell id="yUL19bc03RgOELtqgpFn-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Minimalize Deterministic Finite Automata" vertex="1">
-          <mxGeometry height="60" width="120" x="640" y="450" as="geometry" />
+          <mxGeometry height="60" width="120" x="720" y="450" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

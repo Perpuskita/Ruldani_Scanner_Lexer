@@ -8,11 +8,17 @@ class finite_automata_node:
     pada finite automata. Finite automata dilambangkan dengan lingkaran.
     node atau state ini memiliki sejumlah transisi yang dilambangkan dengan panah.
     """
-    def __init__(self, string_a):
+    def __init__(self,  nama_node: str, 
+                        transisi: list,
+                         ):
+        
         print("inisialisasi finite automata node berhasil")
         self.expression = None
         self.next = None
     
+    def compile_transisi(self):
+        return None
+
     def print_node(self):
         return None
 
@@ -25,7 +31,7 @@ class accepting_node:
     accepting node merupakan sebuah state yang dilambangkan dengan lingkaran ganda.
     state ini biasanya berada diakhir barisan node finite automata.
     """
-    def __init__(self) :
+    def __init__(self, nama_node: str) :
         print("inisialisasi accepting node berhasil")
 
 
