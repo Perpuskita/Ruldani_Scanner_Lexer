@@ -4,7 +4,7 @@ Reguler expression pertama kali dikemukakan pada tahun 1950 oleh Stephen Klenee.
 Reguler expression merupakan salah satu fondasi dalam teori automata dan komputasi.
 """
 
-from .utils.parser_reguler_expression import lexer_pratt_parsing, pratt_parsing, expression
+from .utils import lexer_pratt_parsing, pratt_parsing, expression
 from .exceptions.error import lexical_error
 
 # urutan prioritas operator
