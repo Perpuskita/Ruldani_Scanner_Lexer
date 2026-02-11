@@ -61,7 +61,7 @@ if __name__ == "__main__":
     alternation = re.alternation("scanner", "lexer")
     concatination = re.concatination("lexer", "foo")
 
-    # print
+    # print hasil operasi reguler expresion
     print(klenee_closure)
     print(alternation)
     print(concatination)
