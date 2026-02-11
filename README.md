@@ -1,5 +1,3 @@
-# Ruldani_Scanner_Lexer
-
 Ruldani scanner lexer adalah project chain dari [ruldani visual programming](https://github.com/Perpuskita/Ruldani_VisualProgramming). Ruldani scanner lexer adalah tools untuk melakukan lexical analysis dengan pendekatan finite automata. 
 
 ## Table of content
@@ -43,7 +41,10 @@ pip install -r requirements.txt
 ```bash
 pip install .
 ```
-
+### run test
+```bash
+pytest
+```
 
 ## How to run
 
