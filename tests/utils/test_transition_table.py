@@ -6,3 +6,6 @@ class TestTable:
 
     def test_nama(self):
         assert True
+
+    def test_ns(self):
+        assert True

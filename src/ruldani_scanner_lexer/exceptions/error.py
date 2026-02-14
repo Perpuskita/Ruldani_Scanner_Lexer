@@ -22,9 +22,7 @@ class transition_table_error:
         pass
 
     def undifined_argument(self, nama: str) -> int:
-        return -1
-
-    def double_entry(self, nama: str) -> int:
+        print(f"undefined argument {nama}")
         return -1
 
     def uncomplete_assign(self) -> str :
