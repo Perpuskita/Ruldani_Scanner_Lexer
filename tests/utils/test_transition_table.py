@@ -1,5 +1,6 @@
 import pytest
 
+
 class TestTable:
     def setup_class(cls):
         assert True

@@ -13,7 +13,7 @@ F  : Himpunan accepting state
 
 import shutil
 import math
-from .finite_automata_node import finite_automata_node, accepting_node, finite_automata_arrow
+from .finite_automata_node import finite_automata_node, accepting_node, finite_automata_edge
 
 # konstanta 
 WIDTH_TERMINAL = shutil.get_terminal_size()[0]
@@ -34,7 +34,7 @@ class table:
             self.himpunan_fungsi_transisi.append(himp_transisi)
         
         # mendefinisikan class terminal
-        self.terminal = terminal_table_transition()
+        self.terminal = console_table_transition()
 
     def add_transition(self, state:str, input:str, fungsi_transisi:str):
         state_num       = self.num_state(state)
@@ -136,7 +136,7 @@ class transition_boolean:
         return hasil
 
 # kelas yang digunakan untuk mengelola printing tabel dari transition tabel
-class terminal_table_transition:
+class console_table_transition:
     def __init__(self):
         pass
 
@@ -230,19 +230,3 @@ class terminal_table_transition:
         hasil : str = header + fungsi_transisi_str + desc_s + deskripsi + footer
         return hasil
 
-if __name__ == "__main__":
-    state = ["q0", "q1", "q2", "q3", "q4"]
-    input = ["a", "b", "c", "d", "epsilon"]
-    start = "q0"
-
-    table_transisi = table(state, input, start)
-    table_transisi.add_transition(state="q0", input="a", fungsi_transisi="q1")
-    table_transisi.add_transition(state="q0", input="c", fungsi_transisi="q1")
-    table_transisi.add_transition(state="q1", input="b", fungsi_transisi="q2")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q2")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q3")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q1")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q0")
-    table_transisi.add_accepting_node(node="q2")
-
-    table_transisi.show()

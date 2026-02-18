@@ -49,6 +49,9 @@ pytest
 ## How to run
 
 ### Reguler expression Operator
+dalam project ini hanya terdapat 3 operator saja yang digunakan teman - teman
+operator pendukung seperti [a-z], s?, s+ masih belum dikembangkan dalam class
+reguler expression. 
 
 ```python
 from ruldani_scanner_lexer import reguler_expression

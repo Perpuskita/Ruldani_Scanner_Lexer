@@ -27,3 +27,18 @@ class transition_table_error:
 
     def uncomplete_assign(self) -> str :
         return None
+
+
+class nondeterministic_finite_automata_error:
+    def __init__ (self):
+        pass
+
+    def undefined_start_state(self):
+        return f"start state tidak ditemukan"
+
+    def disconnected_state(self, massage: str) -> str:
+        return f"state tidak terhubung dengan state lain"
+
+    def undefined_start_state(self, massage: str) -> str:
+        return f"error stat state tidak didefinisikan {massage}"
+    

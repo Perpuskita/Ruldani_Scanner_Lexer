@@ -1,12 +1,5 @@
-
-import os
-import sys
 import pytest
-
-# add src path to directory system
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from ruldani_scanner_lexer.reguler_expression import reguler_expression
-
 
 # test sub feature
 class TestSubFeature:
