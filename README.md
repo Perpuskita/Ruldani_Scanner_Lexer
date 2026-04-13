@@ -18,8 +18,8 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | RE Eval   | Melakukan validasi token menggunakan reguler expression | ✍🏽 development   |
 | NFA Visualized   | Memvisualisasikan NFA | ✍🏽 development   |
 | DFA Visualized   | Memvisualisasikan DFA | ✍🏽 development   |
-| RE to NFA   | Mengkonversi RE kedalam bentuk NFA | ✍🏽 development   |
-| NFA to DFA   | Mengkonversi NFA kedalam bentuk DFA | ✍🏽 development   |
+| RE to NFA   | Mengkonversi RE kedalam bentuk NFA, thompson construction | ✍🏽 development   |
+| NFA to Minimized DFA   | Mengkonversi NFA kedalam bentuk DFA, subset construction + Hopcroft algoritm | ✍🏽 development   |
 | RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
 
 ## Teknik konversi
