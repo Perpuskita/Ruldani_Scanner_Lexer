@@ -19,7 +19,7 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | NFA Visualized   | Memvisualisasikan NFA | ✍🏽 development   |
 | DFA Visualized   | Memvisualisasikan DFA | ✍🏽 development   |
 | RE to NFA   | Mengkonversi RE kedalam bentuk NFA, thompson construction | ✍🏽 development   |
-| NFA to Minimized DFA   | Mengkonversi NFA kedalam bentuk DFA, subset construction + Hopcroft algoritm | ✍🏽 development   |
+| NFA to Minimized DFA   | Mengkonversi NFA kedalam bentuk DFA, subset construction + minimalizing DFA (Hopcroft algoritm ) | ✍🏽 development   |
 | RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
 
 ## Teknik konversi
@@ -55,16 +55,21 @@ from ruldani_scanner_lexer import reguler_expression
 
 
 if __name__ == "__main__":
-    re = reguler_expression("")
+    re: reguler_expression = reguler_expression("")
+    
+    # concationation regex
+    concatination: list[str] = re.concatination("lexer", "foo")
 
-    klenee_closure = re.klenee_closure("wello", 3)
-    alternation = re.alternation("scanner", "lexer")
-    concatination = re.concatination("lexer", "foo")
+    # alternation regex
+    alternation: list[str] = re.alternation("scanner", "lexer")
 
-    # print hasil operasi reguler expresion
-    print(klenee_closure)
-    print(alternation)
+    # klenee closure regex
+    klenee_closure: list[str] = re.klenee_closure("wello", 3)
+
+    # print hasil
     print(concatination)
+    print(alternation)
+    print(klenee_closure)
 ```
 ### Reguler expression sampling
 ```python

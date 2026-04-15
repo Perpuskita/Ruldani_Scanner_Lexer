@@ -162,6 +162,8 @@ class reguler_expression :
             res.append(reps + string_a)
             reps = res[-1]
 
+        res.append(epsilon)
+
         # print(f"hasil dari klenee closure adalah {res}")
         # mengembalikan nilai hasil klenee closure
         return res
@@ -202,8 +204,6 @@ class reguler_expression :
         res.append(string_a)
         res.append(string_b)
 
-        # menambahkan epsilon pada hasil alternation
-        res.append(epsilon)
         # print(f"hasil dari alternation adalah{res}")
 
         # mengembalikan nilai dari harsil alternation
