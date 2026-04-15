@@ -8,7 +8,7 @@ Ruldani scanner lexer adalah project chain dari [ruldani visual programming](htt
 
 
 ## Tujuan
-Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori compiler, mempelajari tahapan lexical analysis serta sebagai tools pengembangan untuk ruldani visual programming.
+Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori compiler, mempelajari tahapan lexical analysis serta sebagai tools pengembangan untuk [ruldani visual programming](https://github.com/Perpuskita/Ruldani_VisualProgramming).
 
 ## Roadmap
 
