@@ -13,7 +13,7 @@ F  : Himpunan accepting state
 
 import shutil
 import math
-from .finite_automata_node import finite_automata_node, accepting_node, finite_automata_arrow
+from .finite_automata import finite_automata_node, accepting_node, finite_automata_arrow
 
 # konstanta 
 WIDTH_TERMINAL = shutil.get_terminal_size()[0]

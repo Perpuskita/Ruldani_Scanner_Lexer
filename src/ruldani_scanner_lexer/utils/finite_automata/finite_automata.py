@@ -1,8 +1,4 @@
-"""
-finite automata node berisi node 
-"""
-
-class finite_automata_node:
+class finite_automata:
     """
     finite automata node merupakan sebuah node yang berisi state 
     pada finite automata. Finite automata dilambangkan dengan lingkaran.
@@ -25,20 +21,3 @@ class finite_automata_node:
     def next_node(self, node_s):
         self.next.append(node_s)
         return None
-
-class accepting_node:
-    """
-    accepting node merupakan sebuah state yang dilambangkan dengan lingkaran ganda.
-    state ini biasanya berada diakhir barisan node finite automata.
-    """
-    def __init__(self, nama_node: str) :
-        print("inisialisasi accepting node berhasil")
-
-
-class finite_automata_arrow:
-    """
-    finite auromata arrow merupakan sebuah diantara state. finite automata ini dapat
-    menunjuk dirinya sendiri.
-    """
-    def __init__(self):
-        pass
