@@ -15,12 +15,12 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | Fitur | Deskripsi | Status |
 |-------|-------------|----------|
 | RE Printing   | Melakukan printing posibility terhadap reguler expression   | ✅ complete   |
-| RE Eval   | Melakukan validasi token menggunakan reguler expression | ✍🏽 development   |
-| NFA Visualized   | Memvisualisasikan NFA | ✍🏽 development   |
-| DFA Visualized   | Memvisualisasikan DFA | ✍🏽 development   |
-| RE to NFA   | Mengkonversi RE kedalam bentuk NFA, thompson construction | ✍🏽 development   |
-| NFA to Minimized DFA   | Mengkonversi NFA kedalam bentuk DFA, subset construction + minimalizing DFA (Hopcroft algoritm ) | ✍🏽 development   |
-| RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
+| RE Eval   | Melakukan validasi token menggunakan reguler expression | ✍🏽 dev   |
+| NFA Visualized   | Memvisualisasikan NFA | ✍🏽 dev   |
+| DFA Visualized   | Memvisualisasikan DFA | ✍🏽 dev   |
+| RE to NFA   | Mengkonversi RE kedalam bentuk NFA, [ Thompson Construction ](https://github.com/Perpuskita/Ruldani_Scanner_Lexer/issues/7) | ✍🏽 dev   |
+| NFA to Minimized DFA   | Mengkonversi NFA kedalam bentuk DFA, subset construction + minimalizing DFA (Hopcroft algoritm ) | ✍🏽 dev   |
+| RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 dev   |
 
 ## Teknik konversi
 Teknik konversi atau algoritma yang digunakan adalah thompson construction, subset construction, dan hopcroft algorithm. thompson's construction digunakan untuk mengkonversi reguler expression kedalam non-deterministic finite automata. subset construction digunakan untuk mengkonversi non-deterministic finite automata kedalam deterministic automata. Hopcroft algorithm digunakan untuk membuat deterministic finite automata agar memiliki proses yang lebih kecil namun tetap mendeskripsikan deterministic finite automata yang sebenarnya.
