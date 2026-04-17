@@ -9,9 +9,10 @@ class finite_automata:
     def __init__(self, name: int):
         
         self.expression = None
-        self.next: list[finite_automata_edge] = None
+        self.next: list[finite_automata_edge] = []
         self.accepting: bool = False
         self.start_state: bool = False
+        self.name: int = name
     
     def make_transition(self, edge: finite_automata_edge):
         self.next.append(edge)
