@@ -1,11 +1,11 @@
-from ruldani_scanner_lexer.utils.finite_automata.finite_automata import finite_automata
+EPSILON = "Ɛ"
 
 class finite_automata_edge:
     """
     finite auromata arrow edge digunakan untuk menunjuk state berikutnya. Finite automata edge dapat berisi beberapa method
     """
-    def __init__(self, edge: str, next_node: finite_automata):
-        self.next_node: finite_automata = next_node
+    def __init__(self, next_node, edge: str = EPSILON):
+        self.next_node = next_node
         self.edge: str = edge
 
     def evaluate(self, string_a: str) -> bool:
@@ -14,5 +14,5 @@ class finite_automata_edge:
         
         return False
     
-    def next_finite_automata(self) -> finite_automata :
+    def next_finite_automata(self) :
         return self.next_node
