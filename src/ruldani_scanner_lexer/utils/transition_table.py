@@ -140,7 +140,11 @@ class terminal_table_transition:
         pass
 
     def sparator(self, message :str):
-        slash: str = "=" * math.floor((WIDTH_TERMINAL - len(message))/2)
+        WIDTH_SEPARATOR = 100
+        if WIDTH_TERMINAL < 100 :
+            WIDTH_SEPARATOR = WIDTH_TERMINAL
+
+        slash: str = "=" * math.floor((WIDTH_SEPARATOR - len(message))/2)
         header_str: str = f"\n{BOLD}{slash}{message}{slash}{RESET}"
         return header_str + "\n"
 
@@ -229,19 +233,3 @@ class terminal_table_transition:
         hasil : str = header + fungsi_transisi_str + desc_s + deskripsi + footer
         return hasil
 
-if __name__ == "__main__":
-    state = ["q0", "q1", "q2", "q3", "q4"]
-    input = ["a", "b", "c", "d", "epsilon"]
-    start = "q0"
-
-    table_transisi = table(state, input, start)
-    table_transisi.add_transition(state="q0", input="a", fungsi_transisi="q1")
-    table_transisi.add_transition(state="q0", input="c", fungsi_transisi="q1")
-    table_transisi.add_transition(state="q1", input="b", fungsi_transisi="q2")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q2")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q3")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q1")
-    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q0")
-    table_transisi.add_accepting_node(node="q2")
-
-    table_transisi.show()

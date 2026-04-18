@@ -1,5 +1,5 @@
 from ruldani_scanner_lexer.utils.thompson_construction_utils.thompson_construction_abstract import thompson_constraction_abstract
-from ruldani_scanner_lexer.utils.finite_automata import finite_automata, finite_automata_edge
+from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
 
 EPSILON = "Ɛ"
 

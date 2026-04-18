@@ -1,5 +1,5 @@
 from ruldani_scanner_lexer.utils.thompson_construction_utils.thompson_construction_abstract import thompson_constraction_abstract
-from ruldani_scanner_lexer.utils.finite_automata import finite_automata, finite_automata_edge
+from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
 
 
 EPSILON = "Ɛ"
@@ -40,7 +40,3 @@ class concatination_thompson(thompson_constraction_abstract):
 
         return list_finite[0]
     
-
-if __name__ == "__main__" :
-    conversion: concatination_thompson = concatination_thompson()
-    conversion.make_finite_automata(str_a = "a", str_b = "b")
