@@ -1,4 +1,4 @@
-from ruldani_scanner_lexer.utils.finite_automata import finite_automata
+from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata
 
 class thompson_constraction_abstract :
     def __init__(self):

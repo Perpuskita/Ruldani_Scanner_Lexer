@@ -1,4 +1,4 @@
-from ruldani_scanner_lexer.utils.finite_automata.finite_automata_edge import finite_automata_edge
+from ruldani_scanner_lexer.utils.finite_automata_utils.finite_automata_edge import finite_automata_edge
 
 class finite_automata:
     """

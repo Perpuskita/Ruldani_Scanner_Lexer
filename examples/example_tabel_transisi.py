@@ -3,11 +3,11 @@ from ruldani_scanner_lexer.utils.transition_table import table
 if __name__ == "__main__":
     
     # deklarasi state, input dan start dari node i 
-    state = ["q0", "q1", "q2", "q3", "q4"]
-    input = ["a", "b", "c", "d", "epsilon"]
-    start = "q0"
+    state   = ["q0", "q1", "q2", "q3", "q4"]
+    input_s = ["a", "b", "c", "d", "epsilon"]
+    start   = "q0"
 
-    table_transisi = table(state, input, start)
+    table_transisi = table(state, input_s, start)
 
     # menambahkan fungsi transisi
 
