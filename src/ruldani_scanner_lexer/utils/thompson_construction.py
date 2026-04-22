@@ -20,38 +20,49 @@ class thompson_construction:
         self.expression_ast: expression = expression_ast
 
         # nondeterministic finite automata
-        self.nfa: nondeterministic_finite_automata = nondeterministic_finite_automata()
-        self.read_expression()
+        self.read_expression(self.expression_ast)
 
     # fungsi untuk membaca AST atau expression
     def read_expression(self, expression_ast: expression):
-        lhs = expression.lhs
-        rhs = expression.rhs
-        op  = expression.op
+        lhs = expression_ast.lhs
+        rhs = expression_ast.rhs
+        op  = expression_ast.operator
         
-        # mendapatkan lhs dari ekspressi
-        lhs: token = None
+        if type(lhs) == expression and type(rhs) == expression :
+            self.read_expression(lhs)
+            self.read_expression(rhs)
+            self.make_thompson_construction(lhs=EPSILON, op=op.get_token(), rhs=EPSILON)
 
-        if type(lhs) == expression :
-            lhs = self.render(ast.lhs, jumlah=jumlah)
-        else :
-            lhs = [lhs.get_token()]
+        elif type(lhs) ==  expression and type(rhs) != expression :
+            self.make_thompson_construction(lhs=EPSILON, op=op.get_token(), rhs=rhs.get_token())
+            self.read_expression(lhs)
 
-        rhs: token = None
-        if type(rhs) == expression :
-            rhs = self.render(ast.rhs, jumlah=jumlah)
-        else :
-            rhs = [rhs.get_token()]
+        elif type(lhs) != expression and type(rhs) == expression :
+            self.make_thompson_construction(lhs=EPSILON, op=op.get_token(), rhs=rhs.get_token())
+            self.read_expression(rhs)
 
+        else:
+            self.make_thompson_construction(lhs=lhs.get_token(), op=op.get_token(), rhs=rhs.get_token())
+        
+        return None
+    
+    def make_combine(self, op: str, lhs: str, rhs:str ):
+        
         return None
 
-    def make_thompson_construction(self) -> nondeterministic_finite_automata:
-        operator = "|"
+    def make_thompson_construction(self, lhs: str, op: str, rhs: str) -> list[finite_automata]:
+
+        if op == CONCATINATION:
+            return self.make_concatination(lhs, rhs)
         
-        if operator == "|" :
-            self.make_alternation(stra="A", strb="b")
+        elif op == ALTERNATION :
+            return self.make_alternation(lhs, rhs)
+
+        elif op == KLENEE_CLOSURE:
+            return self.make_alternation(rhs)
         
-        return self.nfa
+        else :
+            raise ValueError("operator token not valid")
 
     # fungsi mengubah alternation ke NFA
     def make_alternation(self, stra: str = EPSILON, strb: str = EPSILON) -> list[finite_automata]:
