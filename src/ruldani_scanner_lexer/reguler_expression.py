@@ -4,8 +4,10 @@ Reguler expression pertama kali dikemukakan pada tahun 1950 oleh Stephen Klenee.
 Reguler expression merupakan salah satu fondasi dalam teori automata dan komputasi.
 """
 
-from .utils import lexer_pratt_parsing, pratt_parsing, expression
+from .utils.pratt_parser_utils import lexer_pratt_parsing, expression, token
+from .utils import pratt_parsing
 from .exceptions.error import lexical_error
+from .constant import EPSILON, CONCATINATION, ALTERNATION, KLENEE_CLOSURE
 
 # urutan prioritas operator
 presendace = {
@@ -25,12 +27,8 @@ presendace = {
 numerik = "1234567890"
 alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-# mendefinisikan epsilon
-epsilon = "ε"
-
 # mendefinisikan class error
 EXCEPTION_LEXER = lexical_error()
-
 
 # class untuk mengolah regular expression
 class reguler_expression :
@@ -44,8 +42,7 @@ class reguler_expression :
     def compile(self, jumlah: int = 1) -> list:
 
         # mengambil lexical dan ast hasil parser pratt parsing
-        lexical = lexer_pratt_parsing(self.string)
-        parser  = pratt_parsing(lexical)
+        parser  = pratt_parsing(self.string)
         ast     = parser.parse_expression()
 
         render  = self.render(ast, jumlah=jumlah, root=True)
@@ -63,14 +60,14 @@ class reguler_expression :
         op = ast.operator.get_token()
         
         # mendapatkan lhs dari ekspressi
-        lhs: list = []
+        lhs: token = None
 
         if type(ast.lhs) == expression :
             lhs = self.render(ast.lhs, jumlah=jumlah)
         else :
             lhs = [ast.lhs.get_token()]
 
-        rhs: list = []
+        rhs: token = None
         if type(ast.rhs) == expression :
             rhs = self.render(ast.rhs, jumlah=jumlah)
         else :
@@ -82,10 +79,10 @@ class reguler_expression :
         
         maximum_render:int = 0
 
-        if op == "|" :
+        if op == ALTERNATION :
             maximum_render = len(lhs) + len(rhs) + 1
         
-        elif op == "*" :
+        elif op == KLENEE_CLOSURE :
             maximum_render = 999
 
         else:
@@ -94,7 +91,7 @@ class reguler_expression :
         res: list = [] # hasil berupa list string
 
         if jumlah > maximum_render and root:
-            raise ValueError(EXCEPTION_LEXER.maximum_render_exception())
+            raise ValueError(EXCEPTION_LEXER.maximum_render_exception(maximum=maximum_render))
 
         # render satu persatu hasil dari operasi
         # algoritma : 
@@ -114,11 +111,13 @@ class reguler_expression :
             temp: list = []
 
             # memperoleh hasil operasi
-            if op == "+" :
+            if op == CONCATINATION:
                 temp = self.concatination(lhs_char, rhs_char)
-            elif op == "|" :
+            
+            elif op == ALTERNATION :
                 temp = self.alternation(lhs_char, rhs_char)
-            elif op == "*" :
+            
+            elif op == KLENEE_CLOSURE :
                 temp = self.klenee_closure(lhs_char, jumlah=jumlah)
 
             # kondisional untuk melakukan looping terhadap temp yang sudah dilakukan
@@ -158,11 +157,11 @@ class reguler_expression :
         res: list = []
         reps: str = ""
 
-        for i in range(jumlah):
+        for i in range(jumlah-1):
             res.append(reps + string_a)
             reps = res[-1]
 
-        res.append(epsilon)
+        res.append(EPSILON)
 
         # print(f"hasil dari klenee closure adalah {res}")
         # mengembalikan nilai hasil klenee closure
@@ -177,10 +176,10 @@ class reguler_expression :
             return None
         
         # return string b jika di concate dengan epsilon
-        if string_a == epsilon:
+        if string_a == EPSILON:
             return string_b
         
-        if string_b == epsilon:
+        if string_b == EPSILON:
             return string_a
 
         # return gabungan dari string a dan string b

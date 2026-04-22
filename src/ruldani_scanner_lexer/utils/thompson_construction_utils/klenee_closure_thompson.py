@@ -1,14 +1,14 @@
 from ruldani_scanner_lexer.utils.thompson_construction_utils.thompson_construction_abstract import thompson_constraction_abstract
 from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
+from ruldani_scanner_lexer.constant import EPSILON
 
-EPSILON = "Ɛ"
 
-class klenee_closure_thompson(thompson_constraction_abstract):
+class klenee_closure_thompson(thompson_constraction_abstract):  
     def __init__(self):
         self.configure_edge: tuple[int, int] = ((0,1), (0,3), (1,2), (2,3), (3,0)) 
         pass
 
-    def make_finite_automata(self, str_a: str) -> finite_automata:
+    def make_finite_automata(self, str_a: str) -> list[finite_automata]:
         # konfigurasi koneksi
         list_finite: list [finite_automata] = []
       
@@ -34,5 +34,5 @@ class klenee_closure_thompson(thompson_constraction_abstract):
         for node in list_finite:
             self.print_finite_automata(node)
 
-        return list_finite[0]
+        return list_finite
 

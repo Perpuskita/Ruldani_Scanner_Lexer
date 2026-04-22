@@ -3,8 +3,8 @@ from ruldani_scanner_lexer.utils.pratt_parser_utils import OP, ID, EOF, BINDING_
 
 # class utama untuk melakukan parsing
 class pratt_parsing:
-    def __init__(self, lexer: lexer_pratt_parsing):
-        self.lexer = lexer
+    def __init__(self, lexer: str):
+        self.lexer: lexer_pratt_parsing = lexer_pratt_parsing(strings=lexer)
 
     def binding_power(self, operator: str):
         bp = BINDING_POWER.get(operator)

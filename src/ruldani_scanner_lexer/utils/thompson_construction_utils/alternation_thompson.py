@@ -1,14 +1,13 @@
 from ruldani_scanner_lexer.utils.thompson_construction_utils.thompson_construction_abstract import thompson_constraction_abstract
 from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
-
-EPSILON = "Ɛ"
+from ruldani_scanner_lexer.constant import EPSILON
 
 class alternation_thompson(thompson_constraction_abstract):
     def __init__(self):
         self.configure_edge: tuple[int, int] = ((0,1), (0,2), (1,3), (2,4), (3,5), (4,5)) 
         pass
 
-    def make_finite_automata(self, str_a: str, str_b: str):
+    def make_finite_automata(self, str_a: str, str_b: str) -> list[finite_automata]:
         # konfigurasi koneksi
         list_finite: list [finite_automata] = []
       
@@ -36,5 +35,5 @@ class alternation_thompson(thompson_constraction_abstract):
         for node in list_finite:
             self.print_finite_automata(node)
         
-        return list_finite[0]
+        return list_finite
     
