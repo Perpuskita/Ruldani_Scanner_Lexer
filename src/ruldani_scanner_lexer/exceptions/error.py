@@ -14,8 +14,8 @@ class lexical_error:
     def none_variabel_concatination_exception(self) -> str:
         return "concatination tidak valid karena terdapat none variabel"
 
-    def maximum_render_exception(self) -> str:
-        return "expressi tidak dapat dirender sebanyak itu"
+    def maximum_render_exception(self, maximum: int) -> str:
+        return f"expressi hanya dapat dirender sebanyak {maximum - 1}"
 
 class transition_table_error:
     def __init__(self):
