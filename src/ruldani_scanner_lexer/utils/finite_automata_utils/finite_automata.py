@@ -38,6 +38,6 @@ class finite_automata:
                 return finite_edge.next_finite_automata()
         return None
 
-    def next_node(self, node_s):
+    def next_node(self, node_s: finite_automata_edge):
         self.next.append(node_s)
         return None
