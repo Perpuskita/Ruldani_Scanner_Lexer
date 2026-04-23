@@ -24,7 +24,7 @@ class concatination_thompson(thompson_constraction_abstract):
             if i == 0 :
                 edge_str = str_a
             
-            elif i == 1:
+            elif i == 2:
                 edge_str = str_b
 
             node_a: int = self.configure_edge[i][0]
@@ -33,8 +33,6 @@ class concatination_thompson(thompson_constraction_abstract):
             next_node: finite_automata = list_finite[node_b]
             edge_now: finite_automata_edge = finite_automata_edge(next_node=next_node, edge=edge_str)
             list_finite[node_a].make_transition(edge=edge_now)
-
-        self.print_finite_automata(list_finite)
 
         return list_finite
     

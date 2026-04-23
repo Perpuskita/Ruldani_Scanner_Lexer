@@ -31,8 +31,6 @@ class alternation_thompson(thompson_constraction_abstract):
             next_node: finite_automata = list_finite[node_b]
             edge_now: finite_automata_edge = finite_automata_edge(next_node=next_node, edge=edge_str)
             list_finite[node_a].make_transition(edge=edge_now)
-
-        self.print_finite_automata(list_finite)
         
         return list_finite
     
