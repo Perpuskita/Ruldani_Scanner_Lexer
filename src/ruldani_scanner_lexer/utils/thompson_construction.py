@@ -123,15 +123,37 @@ class thompson_construction:
         tail.next_node(empty_edge)
 
         return None
-    
-    def squence_shifting(self):
-        return None
+
     # fungsi untuk menggeser nilai dari squence
+    # biar cantik aja
+    def squence_shifting(self, head: finite_automata) -> None:
+
+        queue: set [finite_automata] = [head]
+        head_count: int = 0
+        counter: int = 1
+
+        # looping ke dalam queue
+        while head_count < len(queue) :
+            current = queue[head_count]
+            head_count += 1
+
+            current.name = counter
+            current.number = counter
+            counter += 1
+
+            print(current.name)
+            
+            # Masukan child kedalam 
+            for child in current.next:
+                if child.next_node != current :
+                    queue.append(child.next_node)
+
+        return None
     
     # fungsi untuk mencetak hasil dari pembuatan ast
     def print_listing(self, lists: finite_automata):
         
-        print(f"q{lists.name}-------------")
+        print(f"q{lists.name}")
         for node in lists.next :
             print(f" - {node.edge}")
             self.print_listing(node.next_node)
