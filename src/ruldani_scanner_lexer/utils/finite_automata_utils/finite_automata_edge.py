@@ -14,5 +14,8 @@ class finite_automata_edge:
         
         return False
     
+    def set_finite_automata(self, param):
+        self.next_node = param
+
     def next_finite_automata(self) :
         return self.next_node
