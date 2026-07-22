@@ -32,8 +32,3 @@ class klenee_closure_thompson(thompson_constraction_abstract):
             list_finite[node_a].make_transition(edge=edge_now)
 
         return list_finite
-    
-if __name__ == "__main__" :
-    kc: klenee_closure_thompson = klenee_closure_thompson()
-    fa_list: list[finite_automata] = kc.make_finite_automata("a") 
-    kc.print_finite_automata(fa_list)
