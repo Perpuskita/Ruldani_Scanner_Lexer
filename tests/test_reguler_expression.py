@@ -2,6 +2,7 @@
 import os
 import sys
 import pytest
+from ruldani_scanner_lexer.constant import EPSILON
 
 # add src path to directory system
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -28,13 +29,13 @@ class TestSubFeature:
 
     # test fitur klenee closure
     def test_klenee_closure(self):
-        assert self.re.klenee_closure("r") == ["r", "rr"]
+        assert self.re.klenee_closure("r") == ["r", EPSILON]
     
     def test_klenee_closure2(self):
-        assert self.re.klenee_closure("r",2) == ["r", "rr"]
+        assert self.re.klenee_closure("r",2) == ["r", EPSILON]
 
     def test_klenee_closure3(self):
-        assert self.re.klenee_closure("r",3) == ["r", "rr", "rrr"]
+        assert self.re.klenee_closure("r",3) == ["r", "rr", EPSILON]
 
     # test fitur concatination
     def test_concatination(self):

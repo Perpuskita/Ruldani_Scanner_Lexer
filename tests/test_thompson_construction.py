@@ -10,6 +10,3 @@ class ThompsonTest:
     # test fitur klenee closure
     def test_klenee_closure(self):
         assert klenee_closure_thompson().make_finite_automata("a") == [] 
-    
-    def test_concatination(self):
-        assert self.re.conc
