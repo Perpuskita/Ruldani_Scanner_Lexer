@@ -18,5 +18,6 @@ if __name__ == '__main__':
     hasil: list[finite_automata] = append.append_on_alternation(root=root, param_a=param_a, param_b=param_b)
     
     # print
-    converter_alternation.print_finite_automata(hasil)
+    res = converter_alternation.print_finite_automata(hasil)
+    print(res)
 
