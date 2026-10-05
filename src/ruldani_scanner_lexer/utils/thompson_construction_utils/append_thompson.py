@@ -3,9 +3,7 @@ from ruldani_scanner_lexer.constant import EPSILON
 
 class append_thompson():
     def __init__(self):
-        self.alternation_head: tuple = (3,4)
-        self.concatination_head: tuple = (2,3)
-        self.klenee_closure_head: tuple = (3)
+        pass
 
     def append_on_alternation(  self, root: list[finite_automata] = None, 
                                 param_a: list[finite_automata] = None,
@@ -34,28 +32,13 @@ class append_thompson():
         new_root.append(root[0])
 
         queue: list[finite_automata] = [param_a[0], param_b[0]]
-        name_val: int = 1
-
-        is_counter: dict[finite_automata] = {}
+        new_queue: list[finite_automata] = self.rename_node_info(queue_node=queue, name_factor=1)
         
-        # while loop untuk mendapatkan node
-        while len(queue) > 0 :
-            node: finite_automata = queue.pop(0)
-            if node in is_counter:
-                continue
+        print(len(new_queue))
 
-            # assign node menjadi key dalam is counter
-            is_counter[node] = True
+        new_root = new_root+new_queue
 
-            # mengubah nama node menjadi name val
-            node.name = name_val
-            name_val += 1
-            
-            for edge in node.next :
-                queue.append(edge.next_node)
 
-            new_root.append(node)
-            
         # menyambungkan tail dan head
         # kondisi jika param a diberikan
         if len(param_a) > 0:
@@ -101,3 +84,31 @@ class append_thompson():
         # kondisi jika param b sesuai
 
         return None
+
+    def append_on_klenee_closure(self, root: list[finite_automata], param_a: list[finite_automata]):
+        return None
+
+    def rename_node_info(self, queue_node: list[finite_automata], name_factor: int):
+        
+        new_root: list[finite_automata] = []
+        is_counter: dict[finite_automata] = {}
+        
+        # while loop untuk mendapatkan node
+        while len(queue_node) > 0 :
+            node: finite_automata = queue_node.pop(0)
+            if node in is_counter:
+                continue
+
+            # assign node menjadi key dalam is counter
+            is_counter[node] = True
+
+            # mengubah nama node menjadi name val
+            node.name = name_factor
+            name_factor += 1
+            
+            for edge in node.next :
+                queue_node.append(edge.next_node)
+
+            new_root.append(node)
+
+        return new_root

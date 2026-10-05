@@ -11,7 +11,7 @@ class thompson_constraction_abstract(ABC):
     def make_finite_automata(self) -> list[finite_automata]:
         pass
 
-    def print_finite_automata( self, node_finite_automata: list[finite_automata] ) -> None:
+    def print_finite_automata( self, node_finite_automata: list[finite_automata] ) -> str:
         '''
         fungsi ini digunakan untuk mencetak finite automata dalam console
         contoh hasil cetak dari finite automata, q1 = a
@@ -19,8 +19,9 @@ class thompson_constraction_abstract(ABC):
 
         temp: print_thompson = print_thompson(node_finite_automata)
         hasil: tuple = temp.print_thompson()
-        
-        for node in hasil :
-            print(node)
+        res: str = ""
 
-        return None
+        for node in hasil :
+            res += f"{node}\n"
+
+        return res
