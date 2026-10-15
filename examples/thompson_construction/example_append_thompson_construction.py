@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     # result
     append: append_thompson = append_thompson()
-    hasil: list[finite_automata] = append.append_on_alternation(param_a=param_a, param_b=param_c)
+    hasil: list[finite_automata] = append.append_on_alternation(param_a=param_a, param_b=param_b)
     
     # print
     res = converter_alternation.print_finite_automata(hasil)

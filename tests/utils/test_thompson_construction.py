@@ -20,8 +20,8 @@ class TestThompson:
         self.param_c: list[finite_automata] = alternation_thompson_converter.make_finite_automata("a", "b")
         self.param_d: list[finite_automata] = alternation_thompson_converter.make_finite_automata("b","c")
         
-        self.param_e: list[finite_automata] = klenee_closure_thompson_converter.make_finite_automata("x")
-        self.param_f: list[finite_automata] = klenee_closure_thompson_converter.make_finite_automata("y")
+        self.param_e: list[finite_automata] = klenee_closure_thompson_converter.make_finite_automata("a")
+        self.param_f: list[finite_automata] = klenee_closure_thompson_converter.make_finite_automata("b")
 
         self.converter = concatination_thompson_converter
 
@@ -31,3 +31,6 @@ class TestThompson:
 
     def test_alternation(self):
         assert self.converter.print_finite_automata(self.param_c) == f"q0 -> q1 = ε\nq0 -> q2 = ε\nq1 -> q3 = a\nq2 -> q4 = b\nq3 -> q5 = ε\nq4 -> q5 = ε\n"
+    
+    def test_klenee_closure(self):
+        assert self.converter.print_finite_automata(self.param_e) == f"q0 -> q1 = ε\nq0 -> q3 = ε\nq1 -> q2 = a\nq2 -> q3 = ε\nq3 -> q0 = ε\n"
