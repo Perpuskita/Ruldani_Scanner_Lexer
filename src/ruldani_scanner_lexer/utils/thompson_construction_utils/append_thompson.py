@@ -1,17 +1,18 @@
 from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
+from ruldani_scanner_lexer.utils.thompson_construction_utils.alternation_thompson import alternation_thompson
+from ruldani_scanner_lexer.utils.thompson_construction_utils.concatination_thompson import concatination_thompson
+from ruldani_scanner_lexer.utils.thompson_construction_utils.klenee_closure_thompson import klenee_closure_thompson
 from ruldani_scanner_lexer.constant import EPSILON
+
 
 class append_thompson():
     def __init__(self):
         pass
 
-    def append_on_alternation(  self, root: list[finite_automata] = None, 
-                                param_a: list[finite_automata] = None,
+    def append_on_alternation(  self, param_a: list[finite_automata] = None,
                                 param_b: list[finite_automata] = None ) -> list[finite_automata]:
         
-        if root == None :
-            print("root salah")
-            return None
+        root: list[finite_automata] = alternation_thompson().make_finite_automata(EPSILON, EPSILON)
 
         # mengembalikan nilai jika kedua parameter adalah NONE
         if len(param_a) == None and len(param_b) == None:
@@ -23,23 +24,8 @@ class append_thompson():
         root_b: finite_automata_edge = root[0].next[1]
         tail_a: finite_automata_edge = root[3].next[0]
         tail_b: finite_automata_edge = root[4].next[0]
-
-        #shifting mechanic root
-        new_root : list[finite_automata] = []
-        tail: list[finite_automata] = root[-1]
-
-        tail.name += len(param_a) + len(param_b) - 4
-        new_root.append(root[0])
-
-        queue: list[finite_automata] = [param_a[0], param_b[0]]
-        new_queue: list[finite_automata] = self.rename_node_info(queue_node=queue, name_factor=1)
         
-        print(len(new_queue))
-
-        new_root = new_root+new_queue
-
-
-        # menyambungkan tail dan head
+        # menyambungkan tail dan head parameter
         # kondisi jika param a diberikan
         if len(param_a) > 0:
             # set next finite automata ke param a[0]
@@ -56,17 +42,18 @@ class append_thompson():
             # set param a terakhir menjadi tail
             param_b[-1].next_node(tail_b)
         
-        del root[1:4]
-        return new_root
+        # Shifting mechanic root
+        # Mengurutkan nama node berdasarkan queue
+        new_queue: list[finite_automata] = self.rename_node_info(queue_node=[root[0]])
 
-    def append_on_concatination( self, root: list[finite_automata] = None, 
+        del root[1:4]
+        return new_queue
+
+    def append_on_concatination( self,
                                  param_a: list[finite_automata] = None,
                                  param_b: list[finite_automata] = None ) -> list[finite_automata]:
         
-        
-        if root == None :
-            print("root salah")
-            return None
+        root: list[finite_automata] = concatination_thompson().make_finite_automata(EPSILON, EPSILON)
 
         # mengembalikan nilai jika kedua parameter adalah NONE
         if len(param_a) == None and len(param_b) == None:
@@ -77,21 +64,18 @@ class append_thompson():
         head_a: finite_automata_edge = root[0].next_node[0]
         head_b: finite_automata_edge = root[2].next_node[0]
 
-        # menyambungkan head dan tail
-        # kondisi jika param a sesuai
-
-        
-        # kondisi jika param b sesuai
 
         return None
 
-    def append_on_klenee_closure(self, root: list[finite_automata], param_a: list[finite_automata]):
+    def append_on_klenee_closure(self, param_a: list[finite_automata]):
+        root: list[finite_automata] = klenee_closure_thompson().make_finite_automata(EPSILON)
         return None
 
-    def rename_node_info(self, queue_node: list[finite_automata], name_factor: int):
+    def rename_node_info(self, queue_node: list[finite_automata]):
         
         new_root: list[finite_automata] = []
         is_counter: dict[finite_automata] = {}
+        name_factor: int = 0
         
         # while loop untuk mendapatkan node
         while len(queue_node) > 0 :
@@ -106,9 +90,11 @@ class append_thompson():
             node.name = name_factor
             name_factor += 1
             
-            for edge in node.next :
-                queue_node.append(edge.next_node)
-
+            # jika node >= 1
+            if len(node.next) > 0 :
+                for edge in node.next :
+                    if edge.is_data :
+                        queue_node.append(edge.next_node)
+            
             new_root.append(node)
-
         return new_root
