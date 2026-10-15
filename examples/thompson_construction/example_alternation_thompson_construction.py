@@ -5,4 +5,4 @@ from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, f
 if __name__ == "__main__" :
     converter: alternation_thompson = alternation_thompson()
     result:list[finite_automata] = converter.make_finite_automata(str_a = "a", str_b = "b")
-    converter.print_finite_automata(result)
+    print(converter.print_finite_automata(result))

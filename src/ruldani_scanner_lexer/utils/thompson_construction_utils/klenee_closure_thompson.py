@@ -20,6 +20,7 @@ class klenee_closure_thompson(thompson_constraction_abstract):
             
             edge_str: str = EPSILON
 
+            # jika ini adalah edge ke 2 maka ubah epsilon menjadi string a
             if i == 2 :
                 edge_str = str_a
             
@@ -28,6 +29,11 @@ class klenee_closure_thompson(thompson_constraction_abstract):
 
             next_node: finite_automata = list_finite[node_b]
             edge_now: finite_automata_edge = finite_automata_edge(next_node=next_node, edge=edge_str)
+            
+            # merubah edge menjadi is not data jika edge adalah 3
+            if i == 1 :
+                edge_now.is_data = False
+
             list_finite[node_a].make_transition(edge=edge_now)
 
         return list_finite
