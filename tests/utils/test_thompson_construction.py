@@ -1,6 +1,7 @@
 import pytest
 from ruldani_scanner_lexer.utils.thompson_construction_utils import alternation_thompson, concatination_thompson, klenee_closure_thompson
 from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata
+from ruldani_scanner_lexer.utils.thompson_construction_utils import append_thompson
 
 class TestThompson:
     # setup new test
@@ -24,9 +25,9 @@ class TestThompson:
         self.param_f: list[finite_automata] = klenee_closure_thompson_converter.make_finite_automata("b")
 
         self.converter = concatination_thompson_converter
+        self.append: append_thompson = append_thompson()
 
-    # test fitur klenee closure
-    def test_klenee_closure(self):
+    def test_concationation(self):
         assert self.converter.print_finite_automata(self.param_a) == f"q0 -> q1 = a\nq1 -> q2 = ε\nq2 -> q3 = b\n"
 
     def test_alternation(self):
@@ -34,3 +35,18 @@ class TestThompson:
     
     def test_klenee_closure(self):
         assert self.converter.print_finite_automata(self.param_e) == f"q0 -> q1 = ε\nq0 -> q3 = ε\nq1 -> q2 = a\nq2 -> q3 = ε\nq3 -> q0 = ε\n"
+
+    def test_append_concationation(self):
+        hasil: list[finite_automata] = self.append.append_on_concatination(param_a=self.param_a, param_b=self.param_b)
+        res = self.converter.print_finite_automata(hasil)
+        assert res == f"q0 -> q1 = a\nq1 -> q2 = ε\nq2 -> q3 = b\nq3 -> q4 = Ɛ\nq4 -> q5 = b\nq5 -> q6 = ε\nq6 -> q7 = c\n"
+    
+    def test_append_alternation(self):
+        hasil: list[finite_automata] = self.append.append_on_alternation(param_a=self.param_a, param_b=self.param_b)
+        res = self.converter.print_finite_automata(hasil)
+        assert res == f"q0 -> q1 = ε\nq0 -> q2 = ε\nq1 -> q3 = a\nq2 -> q4 = b\nq3 -> q5 = ε\nq4 -> q6 = ε\nq5 -> q7 = b\nq6 -> q8 = c\nq7 -> q9 = ε\nq8 -> q9 = ε\n"
+
+    def test_append_klenee_closure(self):
+        hasil: list[finite_automata] = self.append.append_on_klenee_closure(param_a=self.param_a)
+        res = self.converter.print_finite_automata(hasil)
+        assert res == f"q0 -> q1 = ε\nq0 -> q5 = ε\nq1 -> q2 = a\nq2 -> q3 = ε\nq3 -> q4 = b\nq4 -> q5 = ε\nq5 -> q0 = ε\n"
