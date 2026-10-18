@@ -12,12 +12,13 @@ if __name__ == '__main__':
     # make example
     param_a: list[finite_automata] = converter_concationation.make_finite_automata("a", "b")
     param_b: list[finite_automata] = converter_concationation.make_finite_automata("c", "d")
+    param_b: list[finite_automata] = converter_alternation.make_finite_automata("c", "d")
     # param_c: list[finite_automata] = converter_klenee_closure.make_finite_automata("a")
 
     # result
     append: append_thompson = append_thompson()
-    hasil: list[finite_automata] = append.append_on_alternation(param_a=param_a, param_b=param_b)
-    
+    hasil: list[finite_automata] = append.append_on_klenee_closure(param_a=param_a)
+
     # print
     res = converter_alternation.print_finite_automata(hasil)
     print(res)

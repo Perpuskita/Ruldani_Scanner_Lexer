@@ -42,34 +42,36 @@ class append_thompson():
             # set param a terakhir menjadi tail
             param_b[-1].next_node(tail_b)
         
-        # Shifting mechanic root
-        # Mengurutkan nama node berdasarkan queue
-        new_queue: list[finite_automata] = self.rename_node_info(queue_node=[root[0]])
-
-        del root[1:4]
-        return new_queue
+        del(root[2:4])
+        return self.rename_node_info(queue_node=[root[0]])
 
     def append_on_concatination( self,
                                  param_a: list[finite_automata] = None,
                                  param_b: list[finite_automata] = None ) -> list[finite_automata]:
         
-        root: list[finite_automata] = concatination_thompson().make_finite_automata(EPSILON, EPSILON)
 
         # mengembalikan nilai jika kedua parameter adalah NONE
-        if len(param_a) == None and len(param_b) == None:
+        if param_a == None and param_b == None:
             print("input salah")
             return None
         
-        # save head a and b
-        head_a: finite_automata_edge = root[0].next_node[0]
-        head_b: finite_automata_edge = root[2].next_node[0]
+        epsilon_transition: finite_automata_edge = finite_automata_edge(next_node=param_b[0])
+        param_a[-1].next = [epsilon_transition]
 
-
-        return None
+        result =  param_a + param_b
+        return self.rename_node_info([result[0]])
 
     def append_on_klenee_closure(self, param_a: list[finite_automata]):
         root: list[finite_automata] = klenee_closure_thompson().make_finite_automata(EPSILON)
-        return None
+
+        head: finite_automata_edge = root[0].next[0]
+        tail: finite_automata_edge = root[2].next[0]
+
+        head.next_node = param_a[0]
+        param_a[-1].next = [tail]
+
+        del(root[1:2])
+        return self.rename_node_info([root[0]])
 
     def rename_node_info(self, queue_node: list[finite_automata]):
         
