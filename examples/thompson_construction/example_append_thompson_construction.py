@@ -1,0 +1,27 @@
+from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata
+from ruldani_scanner_lexer.utils.thompson_construction_utils import alternation_thompson, concatination_thompson, klenee_closure_thompson, result_thompson, append_thompson
+from ruldani_scanner_lexer.constant import EPSILON
+
+if __name__ == '__main__':
+    
+    # make class
+    converter_alternation: alternation_thompson = alternation_thompson()
+    converter_concationation: concatination_thompson = concatination_thompson()
+    converter_klenee_closure: klenee_closure_thompson = klenee_closure_thompson()
+
+    # make example
+    param_a: list[finite_automata] = converter_concationation.make_finite_automata("a", "b")
+    param_b: list[finite_automata] = converter_concationation.make_finite_automata("b", "c")
+
+    # result
+    append: append_thompson = append_thompson()
+
+    # youcan uncommand to show example
+    # hasil: list[finite_automata] = append.append_on_concatination(param_a=param_a, param_b=param_b)
+    hasil: list[finite_automata] = append.append_on_alternation(param_a=param_a, param_b=param_b)
+    # hasil: list[finite_automata] = append.append_on_klenee_closure(param_a=param_a)
+
+    # print new finite automata to string
+    res = converter_alternation.print_finite_automata(hasil)
+    print(res)
+

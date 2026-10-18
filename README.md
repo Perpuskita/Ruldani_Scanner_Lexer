@@ -15,12 +15,12 @@ Tujuan dari project ini adalah untuk mempelajari teori automata, mengenal teori 
 | Fitur | Deskripsi | Status |
 |-------|-------------|----------|
 | RE Printing   | Melakukan printing posibility terhadap reguler expression   | ✅ complete   |
-| RE Eval   | Melakukan validasi token menggunakan reguler expression | ✍🏽 development   |
-| NFA Visualized   | Memvisualisasikan NFA | ✍🏽 development   |
-| DFA Visualized   | Memvisualisasikan DFA | ✍🏽 development   |
-| RE to NFA   | Mengkonversi RE kedalam bentuk NFA, thompson construction | ✍🏽 development   |
-| NFA to Minimized DFA   | Mengkonversi NFA kedalam bentuk DFA, subset construction + minimalizing DFA (Hopcroft algoritm ) | ✍🏽 development   |
-| RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 development   |
+| RE Eval   | Melakukan validasi token menggunakan reguler expression | ✍🏽 dev   |
+| NFA Visualized   | Memvisualisasikan NFA | ✍🏽 dev   |
+| DFA Visualized   | Memvisualisasikan DFA | ✍🏽 dev   |
+| RE to NFA   | Mengkonversi RE kedalam bentuk NFA, [ Thompson Construction ](https://github.com/Perpuskita/Ruldani_Scanner_Lexer/issues/7) | ✍🏽 dev   |
+| NFA to Minimized DFA   | Mengkonversi NFA kedalam bentuk DFA, subset construction + minimalizing DFA (Hopcroft algoritm ) | ✍🏽 dev   |
+| RE to DFA   | Mengkonversi RE kedalam bentuk DFA | ✍🏽 dev   |
 
 ## Teknik konversi
 Teknik konversi atau algoritma yang digunakan adalah thompson construction, subset construction, dan hopcroft algorithm. thompson's construction digunakan untuk mengkonversi reguler expression kedalam non-deterministic finite automata. subset construction digunakan untuk mengkonversi non-deterministic finite automata kedalam deterministic automata. Hopcroft algorithm digunakan untuk membuat deterministic finite automata agar memiliki proses yang lebih kecil namun tetap mendeskripsikan deterministic finite automata yang sebenarnya.
@@ -76,9 +76,40 @@ if __name__ == "__main__":
 from ruldani_scanner_lexer import reguler_expression
 
 if __name__ == "__main__":
-    regex = reguler_expression("(dc)*")
-    hasil = regex.compile(3)
+    regex = reguler_expression("def|fun|fn")
+    hasil = regex.compile(4)
     print(hasil)
+```
+
+### Tabel Transisi
+
+```python
+from ruldani_scanner_lexer.utils.transition_table import table
+
+if __name__ == "__main__":
+    
+    # deklarasi state, input dan start dari node i 
+    state   = ["q0", "q1", "q2", "q3", "q4"]
+    input_s = ["a", "b", "c", "d", "epsilon"]
+    start   = "q0"
+
+    table_transisi = table(state, input_s, start)
+
+    # menambahkan fungsi transisi
+
+    table_transisi.add_transition(state="q0", input="a", fungsi_transisi="q1")
+    table_transisi.add_transition(state="q0", input="c", fungsi_transisi="q1")
+    table_transisi.add_transition(state="q1", input="b", fungsi_transisi="q2")
+    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q2")
+    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q3")
+    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q1")
+    table_transisi.add_transition(state="q2", input="c", fungsi_transisi="q0")
+
+    # menambahkan accepting node
+    table_transisi.add_accepting_node(node="q2")
+
+    # menampilkan tabel transisi
+    table_transisi.show()
 ```
 
 ## Contibute
