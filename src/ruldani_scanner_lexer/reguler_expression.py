@@ -38,20 +38,23 @@ class reguler_expression :
         # print(string_regex)
         self.string:str = string_regex
     
+
+    def make_ast(self):
+        parser  = pratt_parsing(self.string)
+        return parser.parse_expression()
+
     # mencetak dari semua hasil dari regex
-    def compile(self, jumlah: int = 1) -> list:
+    def compile(self, jumlah: int = 1) -> list[str]:
 
         # mengambil lexical dan ast hasil parser pratt parsing
-        parser  = pratt_parsing(self.string)
-        ast     = parser.parse_expression()
-
+        ast: expression = self.make_ast()
         render  = self.render(ast, jumlah=jumlah, root=True)
 
         # cetak hasil
         return render
 
     # fungsi yang digunakan untuk melakukan rendering
-    def render(self, ast: expression, jumlah: int = 1, root: bool = False) -> list:
+    def render(self, ast: expression, jumlah: int = 1, root: bool = False) -> list[str]:
         # error jika parameter jumlah di assign kurang dari 2
         if jumlah < 1:
             raise ValueError ("jumlah harus diatas 1 ")
