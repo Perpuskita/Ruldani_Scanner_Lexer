@@ -9,7 +9,7 @@ if __name__ == "__main__" :
     thompson: thompson_construction = thompson_construction(asts)
     tes : list [finite_automata] = thompson.listing
 
-    thompson.squence_shifting(tes[0])
-    # thompson.print_listing(tes[0])
+    # thompson.squence_shifting(tes[0])
+    thompson.print_listing(tes[0])
 
     

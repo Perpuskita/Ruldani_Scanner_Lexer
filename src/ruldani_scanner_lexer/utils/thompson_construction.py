@@ -1,6 +1,6 @@
 from ruldani_scanner_lexer import nondeterministic_finite_automata
 from ruldani_scanner_lexer.utils import pratt_parsing
-from ruldani_scanner_lexer.utils.thompson_construction_utils import alternation_thompson, klenee_closure_thompson, concatination_thompson
+from ruldani_scanner_lexer.utils.thompson_construction_utils import alternation_thompson, klenee_closure_thompson, concatination_thompson, append_thompson
 from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
 from ruldani_scanner_lexer.utils.pratt_parser_utils import expression, token
 from ruldani_scanner_lexer.constant import EPSILON, CONCATINATION, ALTERNATION, KLENEE_CLOSURE
@@ -12,6 +12,8 @@ class thompson_construction:
         self.concatination: concatination_thompson = concatination_thompson()
         self.alternation: alternation_thompson = alternation_thompson()
         self.klenee_closure: klenee_closure_thompson = klenee_closure_thompson()
+
+        self.append_thompson: append_thompson = append_thompson()
 
         # menampung hasil dari finite automata yang telah digenerate
         self.finite_automata: list[finite_automata] = []
@@ -53,7 +55,7 @@ class thompson_construction:
     
     def make_combine(self, op: str, lhs: list[finite_automata], rhs: list[finite_automata], new_list: list[finite_automata]):
 
-        # # membuat combine berdasarkan op
+        # membuat combine berdasarkan op
         if op == CONCATINATION :
             
             foo : finite_automata_edge = new_list[0].next[0]
@@ -85,6 +87,18 @@ class thompson_construction:
 
         else:
             raise ValueError("operation tidak valid")
+
+    def append_thompson_construction(self, op: str, lhs: list[finite_automata], rhs: list[finite_automata]) -> list[finite_automata]:
+        if op == CONCATINATION :
+            return self.append_thompson.append_on_concatination(param_a=lhs,param_b=rhs)
+        
+        elif op == ALTERNATION :
+            return self.append_thompson.append_on_alternation(param_a=lhs,param_b=rhs)
+
+        elif op == KLENEE_CLOSURE:
+            return self.append_thompson.append_on_klenee_closure(param_a=lhs)
+                    
+        return None
 
     def make_thompson_construction(self, lhs: str, op: str, rhs: str) -> list[finite_automata]:
 
@@ -123,38 +137,9 @@ class thompson_construction:
         tail.next_node(empty_edge)
 
         return None
-
-    # fungsi untuk menggeser nilai dari squence
-    # biar cantik aja
-    def squence_shifting(self, head: finite_automata) -> None:
-
-        queue: set [finite_automata] = [head]
-        head_count: int = 0
-        counter: int = 1
-
-        # looping ke dalam queue
-        while head_count < len(queue) :
-            current = queue[head_count]
-            head_count += 1
-
-            current.name = counter
-            current.number = counter
-            counter += 1
-
-            print(current.name)
-            
-            # Masukan child kedalam 
-            for child in current.next:
-                if child.next_node != current :
-                    queue.append(child.next_node)
-
-        return None
     
     # fungsi untuk mencetak hasil dari pembuatan ast
     def print_listing(self, lists: finite_automata):
         
-        print(f"q{lists.name}")
-        for node in lists.next :
-            print(f" - {node.edge}")
-            self.print_listing(node.next_node)
+        print(type(lists))
         return None

@@ -1,10 +1,11 @@
-from ruldani_scanner_lexer.utils.pratt_parser_utils import token, lexer_pratt_parsing, expression
+from ruldani_scanner_lexer.utils.pratt_parser_utils import token, lexer_pratt_parsing, expression, print_expression
 from ruldani_scanner_lexer.utils.pratt_parser_utils import OP, ID, EOF, BINDING_POWER
 
 # class utama untuk melakukan parsing
 class pratt_parsing:
     def __init__(self, lexer: str):
         self.lexer: lexer_pratt_parsing = lexer_pratt_parsing(strings=lexer)
+        self.print: print_expression = print_expression()
 
     def binding_power(self, operator: str):
         bp = BINDING_POWER.get(operator)
@@ -69,24 +70,9 @@ class pratt_parsing:
         # mengembalikan lhs yang sementara ini bisa berupa token maupun ekspressi
         return lhs
 
-    def print_token(self, ast: expression):
-
-        OP = ast.operator.get_token()
-        lhs = ast.lhs
-
-        if type(lhs) == expression :
-            lhs = self.print_token(lhs)
-        else :
-            lhs = lhs.get_token()
-
-        rhs = ast.rhs
-        if type(rhs) == expression :
-            rhs = self.print_token(rhs)
-        else :
-            rhs = rhs.get_token()
-        
-        res = f"({lhs + OP + rhs})"
-        return res
+    def print_token(self, ast: expression) -> None:
+        self.print.print_expression(ast=ast)
+        return None
 
     def get_ast(self):
         return self.ast
