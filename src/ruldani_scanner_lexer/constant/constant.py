@@ -1,3 +1,11 @@
+# AST marker
+ROOT: str = "└── "
+LAST_CHILD: str = "└── "
+CHILD: str = "├── "
+ROOT_PREFIX: str = "    "
+CHILD_PREFIX: str = "│   "
+
+
 # Constant operator REGEX
 EPSILON: str = "ε"
 ALTERNATION: str = "|"
