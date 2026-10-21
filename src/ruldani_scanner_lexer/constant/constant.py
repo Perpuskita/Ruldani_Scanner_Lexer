@@ -1,10 +1,12 @@
 GREETINGS: str ='''
-Logger telah diaktifkan
+_____________ Logger telah diaktifkan _____________
+
 Selamat datang di ruldani scanner lexer
 
 Sebuah project kecil untuk belajar bagaimana sebuah bahasa pemograman digunakan dan dieksekusi
 kali ini kita akan mencoba mengubah sebuah code lengkap menjadi token-token yang bisa "dimengerti komputer"
 proses inilah yang disebut dengan lexical analysis 
+perangkat lunak untuk menangani proses inilah yang disebut dengan lexer ( lexical analyzer )
 
 pendekatan yang digunakan adalah dengan menggunakan finite state automata
 dimana dalam prosesnya kita akan mengenal beberapa bentuk teori bahasa sebagai berikut
@@ -27,7 +29,9 @@ diantaranya adalah
 untuk melihat bagaimana semua istilah ini bekerja
 bisa dibaca di bagian article..
 
-'''
+
+
+___________ enjoy and let's get started ___________'''
 
 
 # AST marker
