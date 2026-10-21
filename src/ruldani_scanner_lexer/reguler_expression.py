@@ -4,10 +4,13 @@ Reguler expression pertama kali dikemukakan pada tahun 1950 oleh Stephen Klenee.
 Reguler expression merupakan salah satu fondasi dalam teori automata dan komputasi.
 """
 
+from curses import has_il
+from select import select
 from .utils.pratt_parser_utils import lexer_pratt_parsing, expression, token
 from .utils import pratt_parsing
 from .exceptions.error import lexical_error
 from .constant import EPSILON, CONCATINATION, ALTERNATION, KLENEE_CLOSURE
+from .logging import logging
 
 # urutan prioritas operator
 presendace = {
@@ -34,10 +37,14 @@ EXCEPTION_LEXER = lexical_error()
 class reguler_expression :
 
     # inisialisai class
-    def __init__(self, string_regex: str):
+    def __init__(self, string_regex: str, log: logging = None):
         # print(string_regex)
         self.string:str = string_regex
-    
+
+        if log is None :
+            self.logging: logging = logging()
+        else:
+            self.logging: logging = log
 
     def make_ast(self):
         parser  = pratt_parsing(self.string)
@@ -210,3 +217,12 @@ class reguler_expression :
 
         # mengembalikan nilai dari harsil alternation
         return res
+
+    def print_regex(self) -> None:
+        self.logging.print_regex(regex=self.string)
+
+    def print_ast (self)-> None :
+        hasil: expression = self.make_ast()
+        self.logging.print_ast_pratt(ast=hasil)
+        del(hasil)
+        return None
