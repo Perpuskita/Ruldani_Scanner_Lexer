@@ -12,26 +12,32 @@ F  : Himpunan accepting state
 """
 
 from ruldani_scanner_lexer.utils.transition_table_utils import terminal_table_transition, transition_function
+from ruldani_scanner_lexer.logging import logging
 
 class table:
-    def __init__(self, himpunan_state:list, himpunan_input:list, start_state:str):
+    def __init__(self, himpunan_state:list, himpunan_input:list, start_state:str, log: logging=None):
         self.himpunan_state: list = himpunan_state
         self.himpunan_input: list = himpunan_input
         self.start_state: list = start_state
-        self.himpunan_accepting_state = []
+        self.himpunan_accepting_state: list[str] = []
 
         # membuat list dari fungsi transisi
-        self.himpunan_fungsi_transisi:list = []
+        self.himpunan_fungsi_transisi:list[transition_function] = []
         for state in himpunan_state :
-            himp_transisi = transition_function(state=state, input=himpunan_input, jumlah_state=len(himpunan_state))
+            himp_transisi: transition_function = transition_function(state=state, input=himpunan_input, jumlah_state=len(himpunan_state))
             self.himpunan_fungsi_transisi.append(himp_transisi)
         
         # mendefinisikan class terminal
         self.terminal = terminal_table_transition()
 
-    def add_transition(self, state:str, input:str, fungsi_transisi:str):
-        state_num       = self.num_state(state)
-        input_num       = self.num_input(input)
+        if log == None:
+            self.log : logging = logging()
+        else:
+            self.log : logging = log
+
+    def add_transition(self, state:str, input:str, fungsi_transisi:str) -> None:
+        state_num: int       = self.num_state(state)
+        input_num: int       = self.num_input(input)
 
         set_himp: transition_function = self.himpunan_fungsi_transisi[state_num]
         set_himp.set_transition(input= input_num, transition_str=fungsi_transisi)
@@ -61,19 +67,9 @@ class table:
     def eval(self):
         return
 
-    def render_transition_func(self)-> list :
-        hasil: list = []
-        for fungsi_transisi in self.himpunan_fungsi_transisi :
-            hasil.append(fungsi_transisi.get_transition())
-
-        return hasil
-
     def show(self):
-
-        transition_str =  self.render_transition_func()
-        show_terminal: str = self.terminal.desc ( himpunan_state = self.himpunan_state, 
-                                                  himpunan_input = self.himpunan_input, 
-                                                  himpunan_fungsi_transisi = transition_str,
-                                                  himpunan_accepting_state = self.himpunan_accepting_state,
-                                                  start_state= self.start_state)
-        print(show_terminal)
+        self.log.print_table_transition( himpunan_state = self.himpunan_state,
+                                         himpunan_input = self.himpunan_input,
+                                         himpunan_fungsi_transisi= self.himpunan_fungsi_transisi,
+                                         himpunan_accepting_state=self.himpunan_accepting_state,
+                                         start_state=self.start_state)
