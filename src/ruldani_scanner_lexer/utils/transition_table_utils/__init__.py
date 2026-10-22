@@ -1,2 +1,2 @@
-from .teminal_table_transition import terminal_table_transition
+from .print_table_transition import print_table_transition
 from .transition_function import transition_function

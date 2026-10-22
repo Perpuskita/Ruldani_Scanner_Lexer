@@ -11,7 +11,7 @@ F  : Himpunan accepting state
 
 """
 
-from ruldani_scanner_lexer.utils.transition_table_utils import terminal_table_transition, transition_function
+from ruldani_scanner_lexer.utils.transition_table_utils import transition_function
 from ruldani_scanner_lexer.logging import logging
 
 class table:
@@ -26,9 +26,6 @@ class table:
         for state in himpunan_state :
             himp_transisi: transition_function = transition_function(state=state, input=himpunan_input, jumlah_state=len(himpunan_state))
             self.himpunan_fungsi_transisi.append(himp_transisi)
-        
-        # mendefinisikan class terminal
-        self.terminal = terminal_table_transition()
 
         if log == None:
             self.log : logging = logging()
