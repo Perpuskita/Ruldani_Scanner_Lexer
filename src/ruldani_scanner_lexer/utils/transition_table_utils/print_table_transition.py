@@ -7,7 +7,7 @@ BOLD = "\033[3m"
 RESET = "\033[0m"
 
 # kelas yang digunakan untuk mengelola printing tabel dari transition tabel
-class terminal_table_transition:
+class print_table_transition:
     def __init__(self):
         pass
 

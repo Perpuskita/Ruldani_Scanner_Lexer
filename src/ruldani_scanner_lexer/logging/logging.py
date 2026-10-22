@@ -1,12 +1,12 @@
 import os
 from ruldani_scanner_lexer.utils.pratt_parser_utils import expression, print_expression
 from ruldani_scanner_lexer.constant import GREETINGS
-from ruldani_scanner_lexer.utils.transition_table import terminal_table_transition
+from ruldani_scanner_lexer.utils.transition_table_utils import print_table_transition
 
 class logging:
     def __init__(self):
         self.print_pratt : print_expression = print_expression()
-        self.print_table : terminal_table_transition = terminal_table_transition()
+        self.print_table : print_table_transition = print_table_transition()
 
     def greeting(self):
         print(GREETINGS)
