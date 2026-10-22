@@ -16,11 +16,11 @@ class transition_function:
             transition_b = transition_boolean()
             self.transition.append(transition_b)
 
-    def set_transition(self, transition_str: str, input: int )-> int:
+    def set_transition(self, transition_str: str, input: int )-> bool:
         self.transition[input].add_transition(transition_str)
         return True
 
-    def get_transition(self):
+    def get_transition(self) -> list[str]:
         hasil: list = []
         for i, trans in enumerate(self.transition):
             hasil.append(trans.get_transition())

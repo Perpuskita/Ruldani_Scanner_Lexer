@@ -3,7 +3,7 @@ _____________ Logger telah diaktifkan _____________
 
 Selamat datang di ruldani scanner lexer
 
-Sebuah project kecil untuk belajar bagaimana sebuah bahasa pemograman digunakan dan dieksekusi
+Sebuah project kecil untuk belajar bagaimana sebuah bahasa pemograman dibuat dan dieksekusi
 kali ini kita akan mencoba mengubah sebuah code lengkap menjadi token-token yang bisa "dimengerti komputer"
 proses inilah yang disebut dengan lexical analysis 
 perangkat lunak untuk menangani proses inilah yang disebut dengan lexer ( lexical analyzer )

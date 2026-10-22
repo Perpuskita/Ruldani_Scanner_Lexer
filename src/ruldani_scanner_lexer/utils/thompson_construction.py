@@ -1,5 +1,3 @@
-from ruldani_scanner_lexer import nondeterministic_finite_automata
-from ruldani_scanner_lexer.utils import pratt_parsing
 from ruldani_scanner_lexer.utils.thompson_construction_utils import alternation_thompson, klenee_closure_thompson, concatination_thompson, append_thompson
 from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
 from ruldani_scanner_lexer.utils.pratt_parser_utils import expression, token
@@ -22,7 +20,7 @@ class thompson_construction:
         self.expression_ast: expression = expression_ast
 
         # nondeterministic finite automata
-        self.listing: list[finite_automata] = self.read_expression(self.expression_ast)
+        # self.listing: list[finite_automata] = self.read_expression(self.expression_ast)
 
     # fungsi untuk membaca AST atau expression
     def read_expression(self, expression_ast: expression) -> list[finite_automata]:
@@ -139,7 +137,5 @@ class thompson_construction:
         return None
     
     # fungsi untuk mencetak hasil dari pembuatan ast
-    def print_listing(self, lists: finite_automata):
-        
-        print(type(lists))
+    def print_list_nfa(self, root: list[finite_automata]) -> str:  
         return None

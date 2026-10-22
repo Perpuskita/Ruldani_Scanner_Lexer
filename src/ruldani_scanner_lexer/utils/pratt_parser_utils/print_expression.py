@@ -31,7 +31,7 @@ class print_expression:
 
         rhs = ast.rhs
         if type(rhs) == expression :
-            rhs = self.print_expression(rhs, prefix=prefix+CHILD_PREFIX)
+            rhs = self.print_expression(rhs, prefix=prefix+ROOT_PREFIX)
         else :
             rhs = rhs.get_token()
         

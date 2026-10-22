@@ -4,13 +4,8 @@ from ruldani_scanner_lexer import nondeterministic_finite_automata
 from ruldani_scanner_lexer.logging import logging
 import os
 
-def clear():
-    print(f"\nenter untuk melanjutkan..")
-    input()
-    os.system("cls" if os.name == "nt" else "clear")
-
 if __name__ == "__main__":
-    os.system("cls" if os.name == "nt" else "clear")
+
 
     # membuat sebuah example untuk regex
     # contoh untuk memindai token float 
@@ -18,6 +13,7 @@ if __name__ == "__main__":
     
     # membuat logging
     log: logging = logging()
+    log.greeting()
 
     # membuat ast dari regex 
     regex: reguler_expression = reguler_expression(string_regex=regex_example, log=log)
