@@ -14,18 +14,15 @@ class nondeterministic_finite_automata:
             self.logging: logging = logging()
         else:
             self.logging: logging = log
-
+        self.nfa: list[finite_automata] = []
 
     def print_ast(self):
         self.logging.print_ast_pratt(ast=self.ast)
         return None
 
-    def make_thompson_construction(self) -> list[finite_automata]:
-        self.thompson_construction.read_expression(expression_ast=self.ast)
-        return None
-
-    def print_thompson_construction(self):
-        self.thompson_construction.print_listing()
+    def print_thompson_construction(self) -> None:
+        res: str = self.thompson_construction.print_list_nfa()
+        print(res)
         return None
 
     def make_transition_table(self) :
