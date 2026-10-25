@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # membuat sebuah example untuk regex
     # contoh untuk memindai token float 
-    regex_example: str = "float|((1|9).(1|9)*)f"
+    regex_example: str = "float=((1|9)*.(1|9)*)f"
     
     # membuat logging
     log: logging = logging()
@@ -29,8 +29,10 @@ if __name__ == "__main__":
     nfa: nondeterministic_finite_automata = nondeterministic_finite_automata(ast=ast, log=log)
 
     # menampilkan hasil dari ast ke NFA
+    nfa.print_thompson_construction()
 
     # manampilkan hasil dari transition tabel NFA
+
 
 
 
