@@ -32,7 +32,7 @@ if __name__ == "__main__":
     nfa.print_thompson_construction()
 
     # manampilkan hasil dari transition tabel NFA
-
+    nfa.print_transition_table()
 
 
 

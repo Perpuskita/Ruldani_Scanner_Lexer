@@ -1,3 +1,6 @@
+from .pratt_parsing import errors
+from .thompson_construction import errors
+
 class lexical_error:
     def __init__(self):
         pass
