@@ -33,7 +33,11 @@ class logging:
 
     # mencetak hasil dari konversi ast regex ke nfa
     # nfa yang dihasilkan oleh thompson construction
-    def print_nondeterministic_finite_automata(self)-> None:
+    def print_nondeterministic_finite_automata(self, nfa_hasil: str)-> None:
+        print("hasil konversi thompson construction\n\n")
+        
+        print(nfa_hasil)
+        self.clear_screen()
         return None 
 
     # mencetak tabel transisi yang digunakan
@@ -54,4 +58,5 @@ class logging:
                                                         himpunan_accepting_state = himpunan_accepting_state,
                                                         start_state= start_state)
         print(show_terminal)
+        self.clear_screen()
         return None

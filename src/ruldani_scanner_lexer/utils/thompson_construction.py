@@ -1,3 +1,4 @@
+from pluggy import HookImpl
 from ruldani_scanner_lexer.utils.thompson_construction_utils import alternation_thompson, klenee_closure_thompson, concatination_thompson, append_thompson, print_thompson
 from ruldani_scanner_lexer.utils.finite_automata_utils import finite_automata, finite_automata_edge
 from ruldani_scanner_lexer.utils.pratt_parser_utils import expression, token
@@ -19,6 +20,14 @@ class thompson_construction:
         # inisialisasi ast atau expression
         self.expression_ast: expression = expression_ast
         self.fa: list[finite_automata] = self.make_nfa(expression_ast=self.expression_ast)
+        
+        # mengambil informasi state, input dan transisi di fa
+        self.himpunan_state: list[str] = [f"q{i}" for i in range(0, len(self.fa)-1)]
+        self.himpunan_input: list[str] = []
+        self.transisi: list[str, str, str] = []
+        
+        # membuat dan memuat himpunan transisi
+        self.get_himpunan_transisi()
 
     # fungsi untuk membaca AST dan mengubahnya menjadi finite automata
     def make_nfa(self, expression_ast: expression) -> list[finite_automata]:
@@ -103,3 +112,33 @@ class thompson_construction:
     # fungsi untuk mencetak hasil dari pembuatan ast
     def print_list_nfa(self) -> str:
         return self.concatination.print_finite_automata(self.fa)
+
+    # memuat himpunan transisi yang didapatkan dari self finite automata
+    # hasilnya berupa list
+    def get_himpunan_transisi(self) -> None:
+
+        # make chamber for himpunan input dan himpunan state
+        set_input: set[str] = set()
+
+        # make chamber for loop
+        hasil: list[str,str,str] = []
+        queue: list[finite_automata] = [self.fa[0]]
+
+        # membuat loop untuk menangani
+        while len(queue) >= 1:
+            now: finite_automata = queue.pop()
+
+            for node in now.next:
+                state: str = f"q{now.name}"
+                inputs: str = node.edge
+                transisi: str = f"q{node.next_node.name}"
+
+                info: list[str, str, str] = [state, inputs, transisi ]
+                hasil.append(info)
+                queue.append(node.next_node)
+                set_input.add(inputs)
+
+        self.himpunan_input = list(set_input)
+        self.transisi = hasil
+
+        return None

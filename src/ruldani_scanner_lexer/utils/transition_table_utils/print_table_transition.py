@@ -66,14 +66,13 @@ class print_table_transition:
               start_state: str )-> str :
         
         input_width: int  = 13
-        state_width: int  = 3
-        transition_height: int = 3
+        state_width: int  = 6
 
-        splash = f"\n{self.splash_input(state_width)}{self.splash_input(input_width=input_width)*len(himpunan_input)}\n"
+        splash: str = f"\n{self.splash_input(state_width)}{self.splash_input(input_width=input_width)*len(himpunan_input)}\n"
         state = "himpunan state"
 
         fungsi_transisi_str: str = splash
-        fungsi_transisi_str += f"   |"
+        fungsi_transisi_str += f"{" "*state_width}|"
 
         # sumbu x himpunan input
         for input in himpunan_input :
@@ -83,7 +82,7 @@ class print_table_transition:
 
        # sumbu y himpunan state 
         for i, state in enumerate( himpunan_state):
-            fungsi_transisi_str += state + " |" + self.print_function_transisi_str(himpunan_fungsi_transisi[i], input_width=input_width)
+            fungsi_transisi_str += " "+state + " "*(state_width - len(state)-1) + "|" + self.print_function_transisi_str(himpunan_fungsi_transisi[i], input_width=input_width)
             # fungsi_transisi_str += f"{ " " * state_width }|"
             fungsi_transisi_str += splash
 
