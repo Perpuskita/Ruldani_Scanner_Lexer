@@ -20,8 +20,29 @@ class thompson_constraction_abstract(ABC):
         temp: print_thompson = print_thompson(node_finite_automata)
         hasil: tuple = temp.print_thompson()
         res: str = ""
+        
+        buffer: str = ""
+        panjang_buffer: int = 4
+        panjang_string: int = 18
 
-        for node in hasil :
-            res += f"{node}\n"
+        # mencetak hasil dari tuple yang telah diurai print thompson
+        for i, node in enumerate(hasil) :
+            
+            space: str = " "*(panjang_string-len(node))
+
+            if i == 0 :
+                buffer += f"|   {node}"
+
+            elif i%panjang_buffer == 0:
+                res += buffer + f"|\n|   {node}"
+                buffer = ""
+            
+            else :
+                buffer+= f"|   {node}"
+
+            buffer += space
+
+        if len(hasil)%panjang_buffer != 0:
+            res += buffer
 
         return res
