@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # membuat sebuah example untuk regex
     # contoh untuk memindai token float 
-    regex_example: str = "float=((1|9)*.(1|9)*)f"
+    regex_example: str = "(scann|lex)er"
     
     # membuat logging
     log: logging = logging()
