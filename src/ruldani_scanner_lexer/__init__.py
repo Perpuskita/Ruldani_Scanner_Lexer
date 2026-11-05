@@ -1,3 +1,3 @@
 from .reguler_expression import reguler_expression
 from .nondeterministic_finite_automata import nondeterministic_finite_automata
-
+from .deterministic_finite_automata import deterministic_finite_automata

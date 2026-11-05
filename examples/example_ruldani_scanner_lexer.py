@@ -1,8 +1,7 @@
 from ruldani_scanner_lexer import reguler_expression
-from ruldani_scanner_lexer.utils.pratt_parser_utils import expression, print_expression
-from ruldani_scanner_lexer import nondeterministic_finite_automata
+from ruldani_scanner_lexer.utils.pratt_parser_utils import expression
+from ruldani_scanner_lexer import nondeterministic_finite_automata, deterministic_finite_automata
 from ruldani_scanner_lexer.logging import logging
-import os
 
 if __name__ == "__main__":
 
@@ -33,6 +32,14 @@ if __name__ == "__main__":
 
     # manampilkan hasil dari transition tabel NFA
     nfa.print_transition_table()
+
+    # membuat DFA dari tabel
+    dfa: deterministic_finite_automata = deterministic_finite_automata(table=nfa.transition_table)
+
+    # menampilkan hasil dari dfa
+    dfa.print_transition_table()
+
+    dfa.print_subset_construction()
 
 
 
