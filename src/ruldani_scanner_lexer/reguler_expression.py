@@ -46,7 +46,9 @@ class reguler_expression :
         else:
             self.logging: logging = log
 
-    def make_ast(self):
+        self.ast: expression = self.make_ast()
+
+    def make_ast(self)->expression:
         parser  = pratt_parsing(self.string)
         return parser.parse_expression()
 
@@ -221,8 +223,6 @@ class reguler_expression :
     def print_regex(self) -> None:
         self.logging.print_regex(regex=self.string)
 
-    def print_ast (self)-> None :
-        hasil: expression = self.make_ast()
-        self.logging.print_ast_pratt(ast=hasil)
-        del(hasil)
+    def print_ast (self)-> None :        
+        self.logging.print_ast_pratt(ast=self.ast)
         return None

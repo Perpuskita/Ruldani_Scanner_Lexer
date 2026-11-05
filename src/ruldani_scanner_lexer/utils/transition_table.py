@@ -14,7 +14,7 @@ F  : Himpunan accepting state
 from ruldani_scanner_lexer.utils.transition_table_utils import transition_function
 from ruldani_scanner_lexer.logging import logging
 
-class table:
+class  table:
     def __init__(self, himpunan_state:list, himpunan_input:list, start_state:str, log: logging=None):
         self.himpunan_state: list = himpunan_state
         self.himpunan_input: list = himpunan_input
@@ -49,6 +49,7 @@ class table:
         print ("state tidak ditemukan")
         return -1
 
+    # menambahkan 
     def num_input(self, nama_input: str)-> int :
         for i, nama in enumerate(self.himpunan_input):
             if nama == nama_input :
@@ -57,13 +58,12 @@ class table:
         print ("state tidak ditemukan")
         return -1
 
+    # menambahkan accepting node 
     def add_accepting_node(self, node: str):
         self.himpunan_accepting_state.append(node)
         return
 
-    def eval(self):
-        return
-
+    # menampilkan isi dari transisi tabel
     def show(self):
         self.log.print_table_transition( himpunan_state = self.himpunan_state,
                                          himpunan_input = self.himpunan_input,
