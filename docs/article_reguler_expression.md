@@ -6,7 +6,7 @@ Aturan dasar dalam reguler expression terdiri dari beberapa jenis operator ekspr
 
 Dalam reguler expression terdapat kaidah untuk mengatur ekspressi mana yang harus diselesaikan terlebih dahulu. aturan ini disebut sebagai presendece yang juga berlaku dalam ekspressi matematika. Klenee closure merupakan prioritas tertinggi dari urutan prosedur yang harus diselesaikan terlebih dahulu diikuti dengan concatination dan urutan terendahnya adalah alternation.
 
-Untuk mendefinisikan reguler expression yang sangat panjang terdapar beberaoa operasi pembantu yang dapat digunakan. Bayangkan ketika ingin mendefinisikan alternation dari 1 sampai 4, sangat tidak efisien jika menuliskanya dengan (1|2|3|4) oleh karena itu operasi pembantu ini diperlukan. Beberapa operasi adalah sebagi berikut.
+Untuk mendefinisikan reguler expression yang sangat panjang terdapar beberaoa operasi tambahan yang dapat digunakan. Bayangkan ketika ingin mendefinisikan alternation dari 1 sampai 4, sangat tidak efisien jika menuliskanya dengan (1|2|3|4) oleh karena itu operasi tambahan ini diperlukan. Beberapa operasi adalah sebagi berikut.
 
 s?    = mendefinisikan opsional dari s atau bisa ditulis (s|epsilon)
 s+    = mendefinisikan bahwa s harus dicetak 1 atau lebih
