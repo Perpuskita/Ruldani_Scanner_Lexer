@@ -72,7 +72,7 @@ class print_table_transition:
         state = "himpunan state"
 
         fungsi_transisi_str: str = splash
-        fungsi_transisi_str += f"{" "*state_width}|"
+        fungsi_transisi_str += f"{' '*state_width}|"
 
         # sumbu x himpunan input
         for input in himpunan_input :
