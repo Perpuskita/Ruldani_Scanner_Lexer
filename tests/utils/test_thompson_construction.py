@@ -28,25 +28,25 @@ class TestThompson:
         self.append: append_thompson = append_thompson()
 
     def test_concationation(self):
-        assert self.converter.print_finite_automata(self.param_a) == f"q0 -> q1 = a\nq1 -> q2 = ε\nq2 -> q3 = b\n"
+        assert self.converter.print_finite_automata(self.param_a) == f"|   q0 -> q1 = a      |   q1 -> q2 = ε      |   q2 -> q3 = b      "    
 
     def test_alternation(self):
-        assert self.converter.print_finite_automata(self.param_c) == f"q0 -> q1 = ε\nq0 -> q2 = ε\nq1 -> q3 = a\nq2 -> q4 = b\nq3 -> q5 = ε\nq4 -> q5 = ε\n"
+        assert self.converter.print_finite_automata(self.param_c) == f"|   q0 -> q1 = ε      |   q0 -> q2 = ε      |   q1 -> q3 = a      |   q2 -> q4 = b      |\n|   q3 -> q5 = ε      |   q4 -> q5 = ε      "
     
     def test_klenee_closure(self):
-        assert self.converter.print_finite_automata(self.param_e) == f"q0 -> q1 = ε\nq0 -> q3 = ε\nq1 -> q2 = a\nq2 -> q3 = ε\nq3 -> q0 = ε\n"
+        assert self.converter.print_finite_automata(self.param_e) == f"|   q0 -> q1 = ε      |   q0 -> q3 = ε      |   q1 -> q2 = a      |   q2 -> q3 = ε      |\n|   q3 -> q0 = ε      "
 
     def test_append_concationation(self):
         hasil: list[finite_automata] = self.append.append_on_concatination(param_a=self.param_a, param_b=self.param_b)
         res = self.converter.print_finite_automata(hasil)
-        assert res == f"q0 -> q1 = a\nq1 -> q2 = ε\nq2 -> q3 = b\nq3 -> q4 = Ɛ\nq4 -> q5 = b\nq5 -> q6 = ε\nq6 -> q7 = c\n"
+        assert res == f"|   q0 -> q1 = a      |   q1 -> q2 = ε      |   q2 -> q3 = b      |   q3 -> q4 = Ɛ      |\n|   q4 -> q5 = b      |   q5 -> q6 = ε      |   q6 -> q7 = c      "
     
     def test_append_alternation(self):
         hasil: list[finite_automata] = self.append.append_on_alternation(param_a=self.param_a, param_b=self.param_b)
         res = self.converter.print_finite_automata(hasil)
-        assert res == f"q0 -> q1 = ε\nq0 -> q2 = ε\nq1 -> q3 = a\nq2 -> q4 = b\nq3 -> q5 = ε\nq4 -> q6 = ε\nq5 -> q7 = b\nq6 -> q8 = c\nq7 -> q9 = ε\nq8 -> q9 = ε\n"
+        assert res == f"|   q0 -> q1 = ε      |   q0 -> q2 = ε      |   q1 -> q3 = a      |   q2 -> q4 = b      |\n|   q3 -> q5 = ε      |   q4 -> q6 = ε      |   q5 -> q7 = b      |   q6 -> q8 = c      |\n|   q7 -> q9 = ε      |   q8 -> q9 = ε      "
 
     def test_append_klenee_closure(self):
         hasil: list[finite_automata] = self.append.append_on_klenee_closure(param_a=self.param_a)
         res = self.converter.print_finite_automata(hasil)
-        assert res == f"q0 -> q1 = ε\nq0 -> q5 = ε\nq1 -> q2 = a\nq2 -> q3 = ε\nq3 -> q4 = b\nq4 -> q5 = ε\nq5 -> q0 = ε\n"
+        assert res == f"|   q0 -> q1 = ε      |   q0 -> q5 = ε      |   q1 -> q2 = a      |   q2 -> q3 = ε      |\n|   q3 -> q4 = b      |   q4 -> q5 = ε      |   q5 -> q0 = ε      "

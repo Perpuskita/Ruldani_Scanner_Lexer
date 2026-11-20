@@ -25,7 +25,7 @@ class TestSubFeature:
 
     # setup new test
     def setup_class(cls):
-        cls.re = reguler_expression("")
+        cls.re = reguler_expression("regex")
 
     # test fitur klenee closure
     def test_klenee_closure(self):
